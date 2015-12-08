@@ -30,6 +30,11 @@ class GameView: UIView {
             /// 所有格子重置到原来位置
             let w = self.bounds.width/CGFloat(self.numberOfRows)
             let h = self.bounds.height/CGFloat(self.numberOfRows)
+            
+            let imageW = (image?.size.width)!/CGFloat(self.numberOfRows) * (image?.scale)!
+            let imageH = (image?.size.height)!/CGFloat(self.numberOfRows) * (image?.scale)!
+
+            
             for item in self.views {
                 let x = (item.imageView?.tag)! % self.numberOfRows
                 let y = (item.imageView?.tag)! / self.numberOfRows
@@ -38,6 +43,18 @@ class GameView: UIView {
                     item.imageView?.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
                 })
                 item.location = (item.imageView?.tag)!
+                
+                if(item != self.views.last){
+                    
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+                        let rect = CGRectMake(CGFloat(x)*imageW, CGFloat(y)*imageH, CGFloat(imageW), CGFloat(imageH))
+                        let tempImage = UIImage.clipImage(self.image!, withRect: rect)
+                        
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            item.imageView?.image = tempImage
+                        })
+                    })
+                }
             }
             
         }
@@ -63,6 +80,10 @@ class GameView: UIView {
             let imageview = UIImageView(frame: CGRectMake(CGFloat(x)*w, CGFloat(y)*h, CGFloat(w), CGFloat(h)))
             imageview.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
             imageview.contentMode = .ScaleAspectFit
+            imageview.layer.borderWidth = 1
+            imageview.layer.borderColor = UIColor.whiteColor().CGColor
+            imageview.layer.cornerRadius = 3
+            imageview.clipsToBounds = true
             imageview.backgroundColor = (index == (self.numberOfGrids-1)) ? UIColor.whiteColor() : UIColor.randomColor()
             imageview.addTapGesturesTarget(self, action: Selector("imageviewTapGestures:"))
             imageview.tag = index

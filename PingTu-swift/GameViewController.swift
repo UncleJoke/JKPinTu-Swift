@@ -24,7 +24,7 @@ class GameViewController: BaseViewController {
         // Do any additional setup after loading the view.
         let rect = CGRectMake(20, 20, SCREEN_WIDTH - 2*20, SCREEN_WIDTH - 2*20)
         self.gameView = GameView(frame: rect)
-        gameView.backgroundColor = UIColor.grayColor()
+        gameView.backgroundColor = UIColor.clearColor()
         self.view.addSubview(gameView)
     }
     
