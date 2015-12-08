@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="PingTu_swift" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="254" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4i-bQ-JwE">
+                    <rect key="frame" x="0.0" y="147" width="600" height="45"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="xBl-yg-0B9"/>
+                    </constraints>
+                    <state key="normal" title="开始"/>
+                    <connections>
+                        <action selector="startButtonClick:" destination="-1" eventType="touchUpInside" id="ael-Ak-fLM"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7L-CT-uVo">
+                    <rect key="frame" x="0.0" y="277" width="600" height="45"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="Y5p-Yr-YVN"/>
+                    </constraints>
+                    <state key="normal" title="其他"/>
+                    <connections>
+                        <action selector="otherButtonClick:" destination="-1" eventType="touchUpInside" id="Qf3-gU-SV4"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="r7L-CT-uVo" secondAttribute="trailing" id="B2h-Ca-7ep"/>
+                <constraint firstItem="r7L-CT-uVo" firstAttribute="leading" secondItem="C4i-bQ-JwE" secondAttribute="leading" id="QfM-2x-I2N"/>
+                <constraint firstItem="C4i-bQ-JwE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Yjr-i0-cay"/>
+                <constraint firstItem="r7L-CT-uVo" firstAttribute="top" secondItem="C4i-bQ-JwE" secondAttribute="bottom" constant="85" id="bTZ-te-ShX"/>
+                <constraint firstItem="r7L-CT-uVo" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="gJU-wQ-7Zx"/>
+                <constraint firstItem="r7L-CT-uVo" firstAttribute="trailing" secondItem="C4i-bQ-JwE" secondAttribute="trailing" id="rpC-Gc-8ja"/>
+            </constraints>
+            <point key="canvasLocation" x="654" y="551"/>
+        </view>
+    </objects>
+</document>
