@@ -13,11 +13,31 @@ class JKGridInfo: NSObject {
     /// 所在格子的序号
     var location:Int = 0
     
-    var imageView:UIImageView?
+    var imageView:UIImageView!
+    
+    var imageInfo:JKImageInfo?{
+        didSet{
+            self.imageView.image = imageInfo?.image
+        }
+    }
+//    var imageSortNumber:Int?
+//    
+//    var image:UIImage?{
+//        didSet{
+//            self.imageView.image = image
+//        }
+//    }
 
     convenience init(location: Int, imageView:UIImageView) {
         self.init()
         self.imageView = imageView
         self.location = location
     }
+}
+
+class JKImageInfo: NSObject {
+
+    var imageSortNumber:Int?
+    var image:UIImage?
+
 }

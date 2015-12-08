@@ -34,30 +34,78 @@ class GameView: UIView {
             let imageW = (image?.size.width)!/CGFloat(self.numberOfRows) * (image?.scale)!
             let imageH = (image?.size.height)!/CGFloat(self.numberOfRows) * (image?.scale)!
 
+            let images:NSMutableArray! = NSMutableArray()
             
             for item in self.views {
                 let x = (item.imageView?.tag)! % self.numberOfRows
                 let y = (item.imageView?.tag)! / self.numberOfRows
+                let rect = CGRectMake(CGFloat(x)*imageW, CGFloat(y)*imageH, CGFloat(imageW), CGFloat(imageH))
+                let tempImage = UIImage.clipImage(self.image!, withRect: rect)
                 
-                UIView.animateWithDuration(0.15, animations: { () -> Void in
-                    item.imageView?.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
-                })
-                item.location = (item.imageView?.tag)!
+                let imageInfo = JKImageInfo()
+                imageInfo.image = tempImage
+                imageInfo.imageSortNumber = item.imageView.tag
                 
-                if(item != self.views.last){
-                    
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                        let rect = CGRectMake(CGFloat(x)*imageW, CGFloat(y)*imageH, CGFloat(imageW), CGFloat(imageH))
-                        let tempImage = UIImage.clipImage(self.image!, withRect: rect)
-                        
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            item.imageView?.image = tempImage
-                        })
-                    })
+                images.addObject(imageInfo)
+            }
+            self.randomSortArray(images)
+            self.randomSortArray(images)
+            self.randomSortArray(images)
+            self.randomSortArray(images)
+            self.randomSortArray(images)
+            self.randomSortArray(images)
+
+            for index in 0..<self.views.count{
+                let gridInfo = self.views[index]
+                let imageInfo = images[index]
+                
+                if(index != self.views.count-1){
+                    gridInfo.imageInfo = imageInfo as? JKImageInfo
                 }
+                gridInfo.location = index
+                
+                let x = (gridInfo.imageView?.tag)! % self.numberOfRows
+                let y = (gridInfo.imageView?.tag)! / self.numberOfRows
+                UIView.animateWithDuration(0.15, animations: { () -> Void in
+                    gridInfo.imageView?.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
+                })
+                gridInfo.location = index
             }
             
+//            for item in self.views {
+//                let x = (item.imageView?.tag)! % self.numberOfRows
+//                let y = (item.imageView?.tag)! / self.numberOfRows
+//
+//                UIView.animateWithDuration(0.15, animations: { () -> Void in
+//                    item.imageView?.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
+//                })
+//                item.location = (item.imageView?.tag)!
+//
+//                if(item != self.views.last){
+//                    
+//                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+//                        let rect = CGRectMake(CGFloat(x)*imageW, CGFloat(y)*imageH, CGFloat(imageW), CGFloat(imageH))
+//                        let tempImage = UIImage.clipImage(self.image!, withRect: rect)
+//                        
+//                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                            item.imageView?.image = tempImage
+//                        })
+//                    })
+//                }
+//            }
+            
         }
+    }
+    
+    func randomSortArray(array:NSMutableArray){
+        let x = self.randomInRange(Range.init(start: 0, end: self.views.count))
+        let y = self.randomInRange(Range.init(start: 0, end: self.views.count))
+        array.exchangeObjectAtIndex(x, withObjectAtIndex: y)
+    }
+    
+    func randomInRange(range: Range<Int>) -> Int {
+        let count = UInt32(range.endIndex - range.startIndex)
+        return  Int(arc4random_uniform(count)) + range.startIndex
     }
     
     override init(frame: CGRect) {
