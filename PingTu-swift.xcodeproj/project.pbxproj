@@ -19,8 +19,9 @@
 		B663F73A1C12B6E500460420 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663F7381C12B6E400460420 /* HomeViewController.swift */; };
 		B663F73B1C12B6E500460420 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B663F7391C12B6E500460420 /* HomeViewController.xib */; };
 		B663F73E1C12D00A00460420 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663F73C1C12D00A00460420 /* GameViewController.swift */; };
-		B663F73F1C12D00A00460420 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B663F73D1C12D00A00460420 /* GameViewController.xib */; };
 		B663F7411C12D43F00460420 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663F7401C12D43F00460420 /* GameView.swift */; };
+		B69FE2871C16896F00943536 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69FE2861C16896F00943536 /* AppConstants.swift */; };
+		B69FE2891C16AD4000943536 /* JKGridInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69FE2881C16AD4000943536 /* JKGridInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +39,9 @@
 		B663F7381C12B6E400460420 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B663F7391C12B6E500460420 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		B663F73C1C12D00A00460420 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		B663F73D1C12D00A00460420 /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		B663F7401C12D43F00460420 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		B69FE2861C16896F00943536 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		B69FE2881C16AD4000943536 /* JKGridInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKGridInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +83,9 @@
 				B64DE4331C15679A00A52792 /* OtherViewController.swift */,
 				B64DE4341C15679B00A52792 /* OtherViewController.xib */,
 				B663F73C1C12D00A00460420 /* GameViewController.swift */,
-				B663F73D1C12D00A00460420 /* GameViewController.xib */,
 				B663F7401C12D43F00460420 /* GameView.swift */,
+				B69FE2881C16AD4000943536 /* JKGridInfo.swift */,
+				B69FE2861C16896F00943536 /* AppConstants.swift */,
 				B663F71E1C12B52B00460420 /* Main.storyboard */,
 				B663F7211C12B52B00460420 /* Assets.xcassets */,
 				B663F7231C12B52B00460420 /* LaunchScreen.storyboard */,
@@ -154,7 +157,6 @@
 				B663F7221C12B52B00460420 /* Assets.xcassets in Resources */,
 				B663F7201C12B52B00460420 /* Main.storyboard in Resources */,
 				B663F73B1C12B6E500460420 /* HomeViewController.xib in Resources */,
-				B663F73F1C12D00A00460420 /* GameViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,12 +168,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B663F73A1C12B6E500460420 /* HomeViewController.swift in Sources */,
+				B69FE2871C16896F00943536 /* AppConstants.swift in Sources */,
 				B663F7371C12B66400460420 /* BaseNavigationController.swift in Sources */,
 				B663F71D1C12B52B00460420 /* ViewController.swift in Sources */,
 				B663F71B1C12B52B00460420 /* AppDelegate.swift in Sources */,
 				B663F73E1C12D00A00460420 /* GameViewController.swift in Sources */,
 				B64DE4351C15679B00A52792 /* OtherViewController.swift in Sources */,
 				B663F7341C12B5FC00460420 /* BaseViewController.swift in Sources */,
+				B69FE2891C16AD4000943536 /* JKGridInfo.swift in Sources */,
 				B663F7411C12D43F00460420 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

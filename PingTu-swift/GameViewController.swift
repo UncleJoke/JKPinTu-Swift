@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class GameViewController: BaseViewController {
     
     
@@ -17,7 +19,8 @@ class GameViewController: BaseViewController {
         super.viewDidLoad()
         self.title = "拼图"
         // Do any additional setup after loading the view.
-        self.gameView = GameView(frame: self.view.bounds)
+        let rect = CGRectMake(20, 20, SCREEN_WIDTH - 2*20, SCREEN_WIDTH - 2*20)
+        self.gameView = GameView(frame: rect)
         gameView.backgroundColor = UIColor.grayColor()
         self.view.addSubview(gameView)
     }
