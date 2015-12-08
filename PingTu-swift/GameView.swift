@@ -60,7 +60,7 @@ class GameView: UIView {
     }
     
     
-    private func imageviewTapGestures(recognizer:UITapGestureRecognizer){
+    func imageviewTapGestures(recognizer:UITapGestureRecognizer){
         
         var clickInfo:JKGridInfo?
         
