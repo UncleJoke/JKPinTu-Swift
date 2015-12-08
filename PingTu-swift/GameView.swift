@@ -13,14 +13,33 @@ import UIKit
 class GameView: UIView {
 
     private var views = [JKGridInfo]()
-    private var whitePoint:CGPoint = CGPointZero
-    private var step:CGFloat = 0
     
+    private var numberOfGrids:Int {
+        get{
+            return self.numberOfRows*self.numberOfRows
+        }
+    }
+    
+    /// 每一行/列有多少个格子
     var numberOfRows:Int = 4
 
-    var images: NSArray = [] {
+    var image: UIImage? {
         
         didSet{
+            
+            /// 所有格子重置到原来位置
+            let w = self.bounds.width/CGFloat(self.numberOfRows)
+            let h = self.bounds.height/CGFloat(self.numberOfRows)
+            for item in self.views {
+                let x = (item.imageView?.tag)! % self.numberOfRows
+                let y = (item.imageView?.tag)! / self.numberOfRows
+                
+                UIView.animateWithDuration(0.15, animations: { () -> Void in
+                    item.imageView?.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
+                })
+                item.location = (item.imageView?.tag)!
+            }
+            
         }
     }
     
@@ -38,18 +57,13 @@ class GameView: UIView {
         let w = self.bounds.width/CGFloat(self.numberOfRows)
         let h = self.bounds.height/CGFloat(self.numberOfRows)
         
-        self.step = w
-        self.whitePoint = CGPointMake((CGFloat(self.numberOfRows) - 0.5)*w, (CGFloat(self.numberOfRows) - 0.5)*h)
-        
-        let count = self.numberOfRows*self.numberOfRows
-        
-        for index in 0..<count {
+        for index in 0..<self.numberOfGrids {
             let x = index % self.numberOfRows
             let y = index / self.numberOfRows
             let imageview = UIImageView(frame: CGRectMake(CGFloat(x)*w, CGFloat(y)*h, CGFloat(w), CGFloat(h)))
             imageview.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
             imageview.contentMode = .ScaleAspectFit
-            imageview.backgroundColor = (index == (count-1)) ? UIColor.whiteColor() : UIColor.randomColor()
+            imageview.backgroundColor = (index == (self.numberOfGrids-1)) ? UIColor.whiteColor() : UIColor.randomColor()
             imageview.addTapGesturesTarget(self, action: Selector("imageviewTapGestures:"))
             imageview.tag = index
             
@@ -57,10 +71,16 @@ class GameView: UIView {
             self.views.append(info)
             self.addSubview(imageview)
         }
+        self.sendSubviewToBack((self.views.last?.imageView)!)
     }
     
-    
+    var isClick = false
     func imageviewTapGestures(recognizer:UITapGestureRecognizer){
+        
+        if(isClick){
+            return
+        }
+        isClick = true
         
         var clickInfo:JKGridInfo?
         
@@ -92,10 +112,12 @@ class GameView: UIView {
                 }, completion: { (completion) -> Void in
                     clickInfo?.location = location2!
                     placeholderInfo?.location = location1!
+                    self.isClick = false
             })
             
         }else{
             
+            isClick = false
             print(clickInfo)
         }
     }
@@ -120,7 +142,10 @@ class GameView: UIView {
         return false
     }
     
-    
+}
+
+extension UIImage
+{
     /*!
     切割图片
     
@@ -128,12 +153,11 @@ class GameView: UIView {
     - parameter rect:  位置
     - returns: 切割后的图
     */
-    func clipImage(image:UIImage,withRect rect:CGRect) ->UIImage{
+    class func clipImage(image:UIImage,withRect rect:CGRect) ->UIImage{
         let cgImage = CGImageCreateWithImageInRect(image.CGImage, rect)
         return UIImage(CGImage: cgImage!)
     }
 }
-
 
 extension UIView {
     
