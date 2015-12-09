@@ -98,16 +98,11 @@ class GameView: UIView {
     }
     
     func randomSortArray(array:NSMutableArray){
-        let x = self.randomInRange(Range.init(start: 0, end: self.views.count-1))
-        let y = self.randomInRange(Range.init(start: 0, end: self.views.count-1))
+        let x = arc4randomInRange(0, to: self.views.count-1)
+        let y = arc4randomInRange(0, to: self.views.count-1)
         array.exchangeObjectAtIndex(x, withObjectAtIndex: y)
     }
-    
-    func randomInRange(range: Range<Int>) -> Int {
-        let count = UInt32(range.endIndex - range.startIndex)
-        return  Int(arc4random_uniform(count)) + range.startIndex
-    }
-    
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupSubviews()

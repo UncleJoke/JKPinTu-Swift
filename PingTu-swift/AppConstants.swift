@@ -16,9 +16,15 @@ let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.height
 let BOTTOMHEIGHT  = 49
 
 
-///** DEBUG LOG **/
-//#ifdef DEBUG
-//#define DLog( s, ... ) NSLog( @"<%@:(%d)>: %@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
-//#else
-//#define DLog( s, ... )
-//#endif
+/*!
+生成随机数 x ,  start <= x < end
+
+- parameter start: start
+- parameter end:   end
+
+- returns: arc4random
+*/
+func arc4randomInRange(start:Int ,to end:Int)->Int{
+    let count = UInt32(end - start)
+    return  Int(arc4random_uniform(count)) + start
+}

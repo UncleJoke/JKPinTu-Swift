@@ -26,11 +26,15 @@ class GameViewController: BaseViewController {
         self.gameView = GameView(frame: rect)
         gameView.backgroundColor = UIColor.clearColor()
         self.view.addSubview(gameView)
+        
+        self.refresh()
     }
     
     func refresh(){
         
-        self.gameView.image = UIImage(named: "000")
+        let index = arc4randomInRange(0, to: 4)
+        let imageName = "00" + String(index)
+        self.gameView.image = UIImage(named: imageName)
     }
 
     override func didReceiveMemoryWarning() {
