@@ -19,15 +19,51 @@ class GameViewController: BaseViewController {
         super.viewDidLoad()
         self.title = "拼图"
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "刷新", style: .Plain, target: self, action: Selector("refresh"))
+        let settingButton = UIBarButtonItem.init(title: "设置", style: .Plain, target: self, action: Selector("settingButtonClick"))
+        let refreshButton = UIBarButtonItem.init(title: "换图", style: .Plain, target: self, action: Selector("refresh"))
+        
+        self.navigationItem.rightBarButtonItems = [refreshButton,settingButton]
         
         // Do any additional setup after loading the view.
         let rect = CGRectMake(20, 20, SCREEN_WIDTH - 2*20, SCREEN_WIDTH - 2*20)
         self.gameView = GameView(frame: rect)
         gameView.backgroundColor = UIColor.clearColor()
+//        gameView.numberOfRows = 5
         self.view.addSubview(gameView)
         
         self.refresh()
+    }
+    
+    func settingButtonClick(){
+        
+//        self.gameView.numberOfRows = arc4randomInRange(3, to: 9)
+        
+        let alertController = UIAlertController(title: "设置", message: "", preferredStyle: .ActionSheet)
+        
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        let a = UIAlertAction(title: "3*3", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
+            self.gameView.numberOfRows = 3
+        }
+        alertController.addAction(a)
+        
+        let b = UIAlertAction(title: "4*4", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
+            self.gameView.numberOfRows = 4
+        }
+        alertController.addAction(b)
+        
+        let c = UIAlertAction(title: "5*5", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
+            self.gameView.numberOfRows = 5
+        }
+        alertController.addAction(c)
+        
+        let d = UIAlertAction(title: "6*6", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
+            self.gameView.numberOfRows = 6
+        }
+        alertController.addAction(d)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     func refresh(){

@@ -19,85 +19,93 @@ class GameView: UIView {
             return self.numberOfRows*self.numberOfRows
         }
     }
-    
     /// 每一行/列有多少个格子
-    var numberOfRows:Int = 3
-
-    var image: UIImage? {
+    var numberOfRows:Int = 3 {
         
         didSet{
-            
-            /// 所有格子重置到原来位置
-            let w = self.bounds.width/CGFloat(self.numberOfRows)
-            let h = self.bounds.height/CGFloat(self.numberOfRows)
-            
-            let imageW = (image?.size.width)!/CGFloat(self.numberOfRows) * (image?.scale)!
-            let imageH = (image?.size.height)!/CGFloat(self.numberOfRows) * (image?.scale)!
+            //设置了格子数之后需要更新控件信息
+            self.resetViews()
+        }
+    }
 
-            let images:NSMutableArray! = NSMutableArray()
-            
-            for item in self.views {
-                let x = (item.imageView?.tag)! % self.numberOfRows
-                let y = (item.imageView?.tag)! / self.numberOfRows
-                let rect = CGRectMake(CGFloat(x)*imageW, CGFloat(y)*imageH, CGFloat(imageW), CGFloat(imageH))
-                let tempImage = UIImage.clipImage(self.image!, withRect: rect)
-                
-                let imageInfo = JKImageInfo()
-                imageInfo.image = tempImage
-                imageInfo.imageSortNumber = item.imageView.tag
-                
-                images.addObject(imageInfo)
-            }
-            self.randomSortArray(images)
-            self.randomSortArray(images)
-            self.randomSortArray(images)
-            self.randomSortArray(images)
-            self.randomSortArray(images)
-            self.randomSortArray(images)
-
-            for index in 0..<self.views.count{
-                let gridInfo = self.views[index]
-                let imageInfo = images[index]
-                
-                if(index != self.views.count-1){
-                    gridInfo.imageInfo = imageInfo as? JKImageInfo
-                }
-                gridInfo.location = index
-                
-                let x = (gridInfo.imageView?.tag)! % self.numberOfRows
-                let y = (gridInfo.imageView?.tag)! / self.numberOfRows
-                UIView.animateWithDuration(0.15, animations: { () -> Void in
-                    gridInfo.imageView?.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
-                })
-                gridInfo.location = index
-            }
-            
-//            for item in self.views {
-//                let x = (item.imageView?.tag)! % self.numberOfRows
-//                let y = (item.imageView?.tag)! / self.numberOfRows
-//
-//                UIView.animateWithDuration(0.15, animations: { () -> Void in
-//                    item.imageView?.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
-//                })
-//                item.location = (item.imageView?.tag)!
-//
-//                if(item != self.views.last){
-//                    
-//                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-//                        let rect = CGRectMake(CGFloat(x)*imageW, CGFloat(y)*imageH, CGFloat(imageW), CGFloat(imageH))
-//                        let tempImage = UIImage.clipImage(self.image!, withRect: rect)
-//                        
-//                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                            item.imageView?.image = tempImage
-//                        })
-//                    })
-//                }
-//            }
-            
+    var image: UIImage? {
+        didSet{
+            //处理图片并显示
+            self.reloadData()
         }
     }
     
-    func randomSortArray(array:NSMutableArray){
+    func reloadData(){
+        
+        /// 所有格子重置到原来位置
+        let w = self.bounds.width/CGFloat(self.numberOfRows)
+        let h = self.bounds.height/CGFloat(self.numberOfRows)
+        
+        let imageW = (image?.size.width)!/CGFloat(self.numberOfRows) * (image?.scale)!
+        let imageH = (image?.size.height)!/CGFloat(self.numberOfRows) * (image?.scale)!
+        
+        let images:NSMutableArray! = NSMutableArray()
+        
+        for item in self.views {
+            let x = (item.imageView?.tag)! % self.numberOfRows
+            let y = (item.imageView?.tag)! / self.numberOfRows
+            let rect = CGRectMake(CGFloat(x)*imageW, CGFloat(y)*imageH, CGFloat(imageW), CGFloat(imageH))
+            let tempImage = UIImage.clipImage(self.image!, withRect: rect)
+            
+            let imageInfo = JKImageInfo()
+            imageInfo.image = tempImage
+            imageInfo.imageSortNumber = item.imageView.tag
+            
+            images.addObject(imageInfo)
+        }
+
+        /*!
+        *  @author Bingjie, 15-12-09 17:12:35
+        *
+        *  打乱的次数等于每行的格子数 * 2
+        */
+        for _ in 0..<self.numberOfRows*2{
+            self.randomSortArray(images)
+        }
+        
+        /*!
+        *  @author Bingjie, 15-12-09 17:12:51
+        *
+        *  合并图片数组到self.views里边去
+        */
+        for index in 0..<self.views.count{
+            let gridInfo = self.views[index]
+            let imageInfo = images[index]
+            
+            if(index != self.views.count-1){
+                gridInfo.imageInfo = imageInfo as? JKImageInfo
+            }
+            gridInfo.location = index
+            
+            let x = (gridInfo.imageView?.tag)! % self.numberOfRows
+            let y = (gridInfo.imageView?.tag)! / self.numberOfRows
+            UIView.animateWithDuration(0.15, animations: { () -> Void in
+                gridInfo.imageView?.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
+            })
+            gridInfo.location = index
+        }
+    }
+    
+    func resetViews(){
+        
+        for item in self.views {
+            item.imageView.removeFromSuperview()
+        }
+        self.views.removeAll()
+        self.setupSubviews()
+        
+        if(self.image != nil){
+            self.reloadData()
+        }
+    }
+    
+    
+    private func randomSortArray(array:NSMutableArray){
         let x = arc4randomInRange(0, to: self.views.count-1)
         let y = arc4randomInRange(0, to: self.views.count-1)
         array.exchangeObjectAtIndex(x, withObjectAtIndex: y)
