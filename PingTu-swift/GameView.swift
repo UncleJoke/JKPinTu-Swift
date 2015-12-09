@@ -21,7 +21,7 @@ class GameView: UIView {
     }
     
     /// 每一行/列有多少个格子
-    var numberOfRows:Int = 4
+    var numberOfRows:Int = 3
 
     var image: UIImage? {
         
@@ -98,8 +98,8 @@ class GameView: UIView {
     }
     
     func randomSortArray(array:NSMutableArray){
-        let x = self.randomInRange(Range.init(start: 0, end: self.views.count))
-        let y = self.randomInRange(Range.init(start: 0, end: self.views.count))
+        let x = self.randomInRange(Range.init(start: 0, end: self.views.count-1))
+        let y = self.randomInRange(Range.init(start: 0, end: self.views.count-1))
         array.exchangeObjectAtIndex(x, withObjectAtIndex: y)
     }
     

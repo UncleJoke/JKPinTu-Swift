@@ -30,7 +30,7 @@ class GameViewController: BaseViewController {
     
     func refresh(){
         
-        self.gameView.image = UIImage(named: "001")
+        self.gameView.image = UIImage(named: "000")
     }
 
     override func didReceiveMemoryWarning() {

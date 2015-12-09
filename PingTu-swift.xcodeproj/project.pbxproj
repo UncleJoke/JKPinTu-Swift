@@ -292,7 +292,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bingjie.PingTu-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "887013ee-d4c4-47bf-a5fc-45d380930dba";
+				PROVISIONING_PROFILE = "92cbcc59-d39a-4d41-b19c-90a9120d2f0d";
 			};
 			name = Debug;
 		};
@@ -305,7 +305,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bingjie.PingTu-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "887013ee-d4c4-47bf-a5fc-45d380930dba";
+				PROVISIONING_PROFILE = "92cbcc59-d39a-4d41-b19c-90a9120d2f0d";
 			};
 			name = Release;
 		};
