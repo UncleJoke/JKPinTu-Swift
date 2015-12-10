@@ -21,7 +21,8 @@ class GameViewController: BaseViewController {
         
         let settingButton = UIBarButtonItem.init(title: "设置", style: .Plain, target: self, action: Selector("settingButtonClick"))
         let refreshButton = UIBarButtonItem.init(title: "换图", style: .Plain, target: self, action: Selector("changePhotoClick"))
-        self.navigationItem.rightBarButtonItems = [refreshButton,settingButton]
+        let huabanButton = UIBarButtonItem.init(title: "花瓣", style: .Plain, target: self, action: Selector("huabanClick"))
+        self.navigationItem.rightBarButtonItems = [huabanButton,refreshButton,settingButton]
         
         // Do any additional setup after loading the view.
         let rect = CGRectMake(20, 20, SCREEN_WIDTH - 2*20, SCREEN_WIDTH - 2*20)
@@ -37,6 +38,11 @@ class GameViewController: BaseViewController {
         chechButton.addTarget(self, action: Selector("checkGameOver"), forControlEvents: .TouchUpInside)
         chechButton.frame = CGRectMake(0, self.gameView.frame.origin.y + self.gameView.frame.size.width + 20, SCREEN_WIDTH, 30)
         self.view.addSubview(chechButton)
+    }
+    
+    func huabanClick(){
+        let tagVC = JKHBTagViewController()
+        self.navigationController?.pushViewController(tagVC, animated: true)
     }
     
     func settingButtonClick(){

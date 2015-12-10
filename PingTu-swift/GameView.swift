@@ -98,9 +98,7 @@ class GameView: UIView {
             let gridInfo = self.views[index]
             let imageInfo = images[index]
             
-            if(index != self.views.count-1){
-                gridInfo.imageInfo = imageInfo as? JKImageInfo
-            }
+            gridInfo.imageInfo = imageInfo as? JKImageInfo
             gridInfo.location = index
             
             let x = (gridInfo.imageView?.tag)! % self.numberOfRows
@@ -152,11 +150,10 @@ class GameView: UIView {
             let imageview = UIImageView(frame: CGRectMake(CGFloat(x)*w, CGFloat(y)*h, CGFloat(w), CGFloat(h)))
             imageview.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
             imageview.contentMode = .ScaleAspectFit
-            imageview.layer.borderWidth = 1
-            imageview.layer.borderColor = UIColor.whiteColor().CGColor
+            imageview.layer.borderWidth = (index == (self.numberOfGrids-1)) ? 4 : 1
+            imageview.layer.borderColor = (index == (self.numberOfGrids-1)) ? UIColor.randomColor().CGColor : UIColor.whiteColor().CGColor
             imageview.layer.cornerRadius = 3
             imageview.clipsToBounds = true
-            imageview.backgroundColor = (index == (self.numberOfGrids-1)) ? UIColor.whiteColor() : UIColor.randomColor()
             imageview.addTapGesturesTarget(self, action: Selector("imageviewTapGestures:"))
             imageview.tag = index
             
@@ -271,5 +268,14 @@ extension UIColor {
         let blue    = ( arc4random() % 256)
         
         return UIColor(red: CGFloat(red)/255, green: CGFloat(green)/255, blue: CGFloat(blue)/255, alpha: 1)
+    }
+    
+    class func RGBColor(r:CGFloat,g:CGFloat ,b:CGFloat)->UIColor{
+        
+        let red     = r/255.0
+        let green   = g/255.0
+        let blue    = b/255.0
+        
+        return UIColor(red: red, green: green, blue:blue, alpha: 1)
     }
 }

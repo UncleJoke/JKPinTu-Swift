@@ -17,6 +17,10 @@ class HomeViewController: UIViewController {
     }
     @IBAction func startButtonClick(sender: AnyObject) {
         
+//        let tagVC = JKHBTagViewController()
+//        self.navigationController?.pushViewController(tagVC, animated: true)
+//        return
+
         let pVC:GameViewController = GameViewController();
         self.navigationController!.pushViewController(pVC, animated: true);
         
