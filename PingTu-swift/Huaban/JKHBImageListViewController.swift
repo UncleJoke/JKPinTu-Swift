@@ -70,7 +70,20 @@ class JKHBImageListViewController: UICollectionViewController {
         imageView!.kf_setImageWithURL(NSURL(string: tag.thumbnailImageURL)!)
         return cell
     }
-
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        
+        let tag = self.tags[indexPath.row] as! JKHBTagDetailInfo
+        let url = NSURL(string: tag.originalImageURL)
+        KingfisherManager().downloader.downloadImageWithURL(url!, progressBlock: { (receivedSize, totalSize) -> () in
+            print(receivedSize)
+            }) { (image, error, imageURL, originalData) -> () in
+                print(imageURL)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -41,8 +41,10 @@ class GameViewController: BaseViewController {
     }
     
     func huabanClick(){
-        let tagVC = JKHBTagViewController()
-        self.navigationController?.pushViewController(tagVC, animated: true)
+    
+        let nav:JKHBNavigationController = JKHBNavigationController.initJKHBNavigationController()
+        self.presentViewController(nav, animated: true) { () -> Void in
+        }
     }
     
     func settingButtonClick(){

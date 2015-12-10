@@ -23,6 +23,9 @@ class JKHBTagViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "美图分类"
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -106,4 +109,23 @@ class JKHBTagViewController: UITableViewController {
     }
     */
 
+}
+
+class JKHBNavigationController:BaseNavigationController {
+    
+    class func initJKHBNavigationController()->JKHBNavigationController{
+        let vc = JKHBTagViewController()
+        let nav:JKHBNavigationController = JKHBNavigationController(rootViewController:vc)
+        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "取消", style: .Plain, target: nav, action: Selector("dismissClick"))
+        return nav
+    }
+    
+    func dismissClick(){
+        self.dismissViewControllerAnimated(true) { () -> Void in
+        }
+    }
+    
+    override func viewDidLoad() {
+        
+    }
 }
