@@ -22,9 +22,13 @@
 		B663F7411C12D43F00460420 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663F7401C12D43F00460420 /* GameView.swift */; };
 		B69FE2871C16896F00943536 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69FE2861C16896F00943536 /* AppConstants.swift */; };
 		B69FE2891C16AD4000943536 /* JKGridInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69FE2881C16AD4000943536 /* JKGridInfo.swift */; };
+		E3A9D2388F277B5A33E91CD5 /* Pods_PingTu_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FD0A55B5D88271857216D9 /* Pods_PingTu_swift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64CB697EA6BAF588E1828EED /* Pods-PingTu-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PingTu-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-PingTu-swift/Pods-PingTu-swift.release.xcconfig"; sourceTree = "<group>"; };
+		72FD0A55B5D88271857216D9 /* Pods_PingTu_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PingTu_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AACE39E67379D0A9DC602727 /* Pods-PingTu-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PingTu-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PingTu-swift/Pods-PingTu-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		B64DE4331C15679A00A52792 /* OtherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		B64DE4341C15679B00A52792 /* OtherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherViewController.xib; sourceTree = "<group>"; };
 		B663F7171C12B52B00460420 /* PingTu-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PingTu-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,17 +53,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3A9D2388F277B5A33E91CD5 /* Pods_PingTu_swift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B1194036345A474B017C2D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72FD0A55B5D88271857216D9 /* Pods_PingTu_swift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6FF8FCFDEBA45F25DB7A45FD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AACE39E67379D0A9DC602727 /* Pods-PingTu-swift.debug.xcconfig */,
+				64CB697EA6BAF588E1828EED /* Pods-PingTu-swift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B663F70E1C12B52B00460420 = {
 			isa = PBXGroup;
 			children = (
 				B663F7191C12B52B00460420 /* PingTu-swift */,
 				B663F7181C12B52B00460420 /* Products */,
+				6FF8FCFDEBA45F25DB7A45FD /* Pods */,
+				5B1194036345A474B017C2D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,9 +125,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B663F7291C12B52B00460420 /* Build configuration list for PBXNativeTarget "PingTu-swift" */;
 			buildPhases = (
+				D2E20E1BB7E7BDF6A146271E /* Check Pods Manifest.lock */,
 				B663F7131C12B52B00460420 /* Sources */,
 				B663F7141C12B52B00460420 /* Frameworks */,
 				B663F7151C12B52B00460420 /* Resources */,
+				3F34D048E0C1650142485304 /* Embed Pods Frameworks */,
+				BB0B84DBD6A0E425249BFB9C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,6 +188,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F34D048E0C1650142485304 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PingTu-swift/Pods-PingTu-swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB0B84DBD6A0E425249BFB9C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PingTu-swift/Pods-PingTu-swift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2E20E1BB7E7BDF6A146271E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B663F7131C12B52B00460420 /* Sources */ = {
@@ -285,6 +360,7 @@
 		};
 		B663F72A1C12B52B00460420 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AACE39E67379D0A9DC602727 /* Pods-PingTu-swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -298,6 +374,7 @@
 		};
 		B663F72B1C12B52B00460420 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64CB697EA6BAF588E1828EED /* Pods-PingTu-swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
