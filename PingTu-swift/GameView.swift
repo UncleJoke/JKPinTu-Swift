@@ -35,6 +35,27 @@ class GameView: UIView {
         }
     }
     
+    func checkGameOver()->Bool{
+        
+        var succ = true
+        for item in self.views{
+
+            if(item == self.views.last){
+                break
+            }
+            
+            if(item.imageInfo?.imageSortNumber != item.imageView.tag){
+                succ = false
+                return succ
+            }
+            
+            print("location: \(item.location)    imageSortNumber: \(item.imageInfo?.imageSortNumber)   tag: \(item.imageView.tag)" )
+        }
+        
+        return succ
+    }
+    
+    
     func reloadData(){
         
         /// 所有格子重置到原来位置

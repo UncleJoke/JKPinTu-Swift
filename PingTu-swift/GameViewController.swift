@@ -20,58 +20,60 @@ class GameViewController: BaseViewController {
         self.title = "拼图"
         
         let settingButton = UIBarButtonItem.init(title: "设置", style: .Plain, target: self, action: Selector("settingButtonClick"))
-        let refreshButton = UIBarButtonItem.init(title: "换图", style: .Plain, target: self, action: Selector("refresh"))
-        
+        let refreshButton = UIBarButtonItem.init(title: "换图", style: .Plain, target: self, action: Selector("changePhotoClick"))
         self.navigationItem.rightBarButtonItems = [refreshButton,settingButton]
         
         // Do any additional setup after loading the view.
         let rect = CGRectMake(20, 20, SCREEN_WIDTH - 2*20, SCREEN_WIDTH - 2*20)
         self.gameView = GameView(frame: rect)
         gameView.backgroundColor = UIColor.clearColor()
-//        gameView.numberOfRows = 5
         self.view.addSubview(gameView)
+        self.changePhotoClick()
         
-        self.refresh()
+        
+        let chechButton = UIButton(type: .Custom)
+        chechButton.setTitle("check", forState: .Normal)
+        chechButton.setTitleColor(UIColor.randomColor(), forState: .Normal)
+        chechButton.addTarget(self, action: Selector("checkGameOver"), forControlEvents: .TouchUpInside)
+        chechButton.frame = CGRectMake(0, self.gameView.frame.origin.y + self.gameView.frame.size.width + 20, SCREEN_WIDTH, 30)
+        self.view.addSubview(chechButton)
     }
     
     func settingButtonClick(){
         
-//        self.gameView.numberOfRows = arc4randomInRange(3, to: 9)
-        
         let alertController = UIAlertController(title: "设置", message: "", preferredStyle: .ActionSheet)
-        
         let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
         alertController.addAction(cancelAction)
-
-        let a = UIAlertAction(title: "3*3", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
-            self.gameView.numberOfRows = 3
-        }
-        alertController.addAction(a)
         
-        let b = UIAlertAction(title: "4*4", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
-            self.gameView.numberOfRows = 4
+        let array = [3,4,5,6,7]
+        for value in array{
+            let name = String(value) + "*" +  String(value)
+            let a = UIAlertAction(title: name, style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
+                self.gameView.numberOfRows = value
+            }
+            alertController.addAction(a)
         }
-        alertController.addAction(b)
-        
-        let c = UIAlertAction(title: "5*5", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
-            self.gameView.numberOfRows = 5
-        }
-        alertController.addAction(c)
-        
-        let d = UIAlertAction(title: "6*6", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
-            self.gameView.numberOfRows = 6
-        }
-        alertController.addAction(d)
-        
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    func refresh(){
+    func changePhotoClick(){
         
         let index = arc4randomInRange(0, to: 4)
         let imageName = "00" + String(index)
         self.gameView.image = UIImage(named: imageName)
     }
+    
+    
+    func checkGameOver(){
+        
+        if(self.gameView.checkGameOver() == true){
+            print("恭喜拼图成功，游戏结束")
+        }else{
+            print("还没拼出来，加油哦")
+        }
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
