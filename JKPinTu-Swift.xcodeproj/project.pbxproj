@@ -1,0 +1,467 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A171FE12E0A0E6B96967EAEB /* Pods_JKPinTu_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A25753027E32E9F2898A37 /* Pods_JKPinTu_Swift.framework */; };
+		B641F9C61C1AE088000D8068 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9C51C1AE088000D8068 /* AppDelegate.swift */; };
+		B641F9CB1C1AE088000D8068 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B641F9C91C1AE088000D8068 /* Main.storyboard */; };
+		B641F9CD1C1AE088000D8068 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B641F9CC1C1AE088000D8068 /* Assets.xcassets */; };
+		B641F9D01C1AE088000D8068 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B641F9CE1C1AE088000D8068 /* LaunchScreen.storyboard */; };
+		B641F9EB1C1AE249000D8068 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9D71C1AE249000D8068 /* AppConstants.swift */; };
+		B641F9EC1C1AE249000D8068 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9D91C1AE249000D8068 /* BaseNavigationController.swift */; };
+		B641F9ED1C1AE249000D8068 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9DA1C1AE249000D8068 /* BaseViewController.swift */; };
+		B641F9EE1C1AE249000D8068 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9DB1C1AE249000D8068 /* GameView.swift */; };
+		B641F9EF1C1AE249000D8068 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9DC1C1AE249000D8068 /* GameViewController.swift */; };
+		B641F9F01C1AE249000D8068 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9DD1C1AE249000D8068 /* HomeViewController.swift */; };
+		B641F9F11C1AE249000D8068 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B641F9DE1C1AE249000D8068 /* HomeViewController.xib */; };
+		B641F9F21C1AE249000D8068 /* JKHBTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9E11C1AE249000D8068 /* JKHBTagCell.swift */; };
+		B641F9F31C1AE249000D8068 /* JKHBTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B641F9E21C1AE249000D8068 /* JKHBTagCell.xib */; };
+		B641F9F41C1AE249000D8068 /* JKHBImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9E31C1AE249000D8068 /* JKHBImageListViewController.swift */; };
+		B641F9F51C1AE249000D8068 /* JKHBTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9E41C1AE249000D8068 /* JKHBTagViewController.swift */; };
+		B641F9F61C1AE249000D8068 /* JKHBTagDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9E61C1AE249000D8068 /* JKHBTagDetailInfo.swift */; };
+		B641F9F71C1AE249000D8068 /* JKHBTagInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9E71C1AE249000D8068 /* JKHBTagInfo.swift */; };
+		B641F9F81C1AE249000D8068 /* JKGridInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9E81C1AE249000D8068 /* JKGridInfo.swift */; };
+		B641F9F91C1AE249000D8068 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9E91C1AE249000D8068 /* OtherViewController.swift */; };
+		B641F9FA1C1AE249000D8068 /* OtherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B641F9EA1C1AE249000D8068 /* OtherViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		19A25753027E32E9F2898A37 /* Pods_JKPinTu_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JKPinTu_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ECA3B90382E8416196699A5 /* Pods-JKPinTu-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JKPinTu-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JKPinTu-Swift/Pods-JKPinTu-Swift.debug.xcconfig"; sourceTree = "<group>"; };
+		92DFFAB78212E6391E232A3D /* Pods-JKPinTu-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JKPinTu-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-JKPinTu-Swift/Pods-JKPinTu-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		B641F9C21C1AE088000D8068 /* JKPinTu-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JKPinTu-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B641F9C51C1AE088000D8068 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B641F9CA1C1AE088000D8068 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B641F9CC1C1AE088000D8068 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B641F9CF1C1AE088000D8068 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B641F9D11C1AE088000D8068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B641F9D71C1AE249000D8068 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		B641F9D91C1AE249000D8068 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		B641F9DA1C1AE249000D8068 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B641F9DB1C1AE249000D8068 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		B641F9DC1C1AE249000D8068 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		B641F9DD1C1AE249000D8068 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B641F9DE1C1AE249000D8068 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		B641F9E11C1AE249000D8068 /* JKHBTagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHBTagCell.swift; sourceTree = "<group>"; };
+		B641F9E21C1AE249000D8068 /* JKHBTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JKHBTagCell.xib; sourceTree = "<group>"; };
+		B641F9E31C1AE249000D8068 /* JKHBImageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHBImageListViewController.swift; sourceTree = "<group>"; };
+		B641F9E41C1AE249000D8068 /* JKHBTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHBTagViewController.swift; sourceTree = "<group>"; };
+		B641F9E61C1AE249000D8068 /* JKHBTagDetailInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHBTagDetailInfo.swift; sourceTree = "<group>"; };
+		B641F9E71C1AE249000D8068 /* JKHBTagInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHBTagInfo.swift; sourceTree = "<group>"; };
+		B641F9E81C1AE249000D8068 /* JKGridInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKGridInfo.swift; sourceTree = "<group>"; };
+		B641F9E91C1AE249000D8068 /* OtherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
+		B641F9EA1C1AE249000D8068 /* OtherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B641F9BF1C1AE088000D8068 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A171FE12E0A0E6B96967EAEB /* Pods_JKPinTu_Swift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B641F9B91C1AE088000D8068 = {
+			isa = PBXGroup;
+			children = (
+				B641F9C41C1AE088000D8068 /* JKPinTu-Swift */,
+				B641F9C31C1AE088000D8068 /* Products */,
+				F652C45AF0C8C9F7A8E90810 /* Pods */,
+				EFA346E60520E50C82903843 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B641F9C31C1AE088000D8068 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B641F9C21C1AE088000D8068 /* JKPinTu-Swift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B641F9C41C1AE088000D8068 /* JKPinTu-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				B641F9C51C1AE088000D8068 /* AppDelegate.swift */,
+				B641F9D81C1AE249000D8068 /* Base */,
+				B641F9DF1C1AE249000D8068 /* Huaban */,
+				B641F9D71C1AE249000D8068 /* AppConstants.swift */,
+				B641F9DB1C1AE249000D8068 /* GameView.swift */,
+				B641F9DC1C1AE249000D8068 /* GameViewController.swift */,
+				B641F9DD1C1AE249000D8068 /* HomeViewController.swift */,
+				B641F9DE1C1AE249000D8068 /* HomeViewController.xib */,
+				B641F9E81C1AE249000D8068 /* JKGridInfo.swift */,
+				B641F9E91C1AE249000D8068 /* OtherViewController.swift */,
+				B641F9EA1C1AE249000D8068 /* OtherViewController.xib */,
+				B641F9C91C1AE088000D8068 /* Main.storyboard */,
+				B641F9CC1C1AE088000D8068 /* Assets.xcassets */,
+				B641F9CE1C1AE088000D8068 /* LaunchScreen.storyboard */,
+				B641F9D11C1AE088000D8068 /* Info.plist */,
+			);
+			path = "JKPinTu-Swift";
+			sourceTree = "<group>";
+		};
+		B641F9D81C1AE249000D8068 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B641F9D91C1AE249000D8068 /* BaseNavigationController.swift */,
+				B641F9DA1C1AE249000D8068 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		B641F9DF1C1AE249000D8068 /* Huaban */ = {
+			isa = PBXGroup;
+			children = (
+				B641F9E01C1AE249000D8068 /* Cell */,
+				B641F9E31C1AE249000D8068 /* JKHBImageListViewController.swift */,
+				B641F9E41C1AE249000D8068 /* JKHBTagViewController.swift */,
+				B641F9E51C1AE249000D8068 /* Model */,
+			);
+			path = Huaban;
+			sourceTree = "<group>";
+		};
+		B641F9E01C1AE249000D8068 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B641F9E11C1AE249000D8068 /* JKHBTagCell.swift */,
+				B641F9E21C1AE249000D8068 /* JKHBTagCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B641F9E51C1AE249000D8068 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B641F9E61C1AE249000D8068 /* JKHBTagDetailInfo.swift */,
+				B641F9E71C1AE249000D8068 /* JKHBTagInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EFA346E60520E50C82903843 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				19A25753027E32E9F2898A37 /* Pods_JKPinTu_Swift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F652C45AF0C8C9F7A8E90810 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3ECA3B90382E8416196699A5 /* Pods-JKPinTu-Swift.debug.xcconfig */,
+				92DFFAB78212E6391E232A3D /* Pods-JKPinTu-Swift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B641F9C11C1AE088000D8068 /* JKPinTu-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B641F9D41C1AE088000D8068 /* Build configuration list for PBXNativeTarget "JKPinTu-Swift" */;
+			buildPhases = (
+				B666471CC6D15CDFEC1DA85F /* Check Pods Manifest.lock */,
+				B641F9BE1C1AE088000D8068 /* Sources */,
+				B641F9BF1C1AE088000D8068 /* Frameworks */,
+				B641F9C01C1AE088000D8068 /* Resources */,
+				D2D81E1B60C327823C759C7F /* Embed Pods Frameworks */,
+				0D531529C5CE25795F32378A /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "JKPinTu-Swift";
+			productName = "JKPinTu-Swift";
+			productReference = B641F9C21C1AE088000D8068 /* JKPinTu-Swift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B641F9BA1C1AE088000D8068 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Bingjie;
+				TargetAttributes = {
+					B641F9C11C1AE088000D8068 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = B641F9BD1C1AE088000D8068 /* Build configuration list for PBXProject "JKPinTu-Swift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B641F9B91C1AE088000D8068;
+			productRefGroup = B641F9C31C1AE088000D8068 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B641F9C11C1AE088000D8068 /* JKPinTu-Swift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B641F9C01C1AE088000D8068 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B641F9F31C1AE249000D8068 /* JKHBTagCell.xib in Resources */,
+				B641F9FA1C1AE249000D8068 /* OtherViewController.xib in Resources */,
+				B641F9D01C1AE088000D8068 /* LaunchScreen.storyboard in Resources */,
+				B641F9CD1C1AE088000D8068 /* Assets.xcassets in Resources */,
+				B641F9CB1C1AE088000D8068 /* Main.storyboard in Resources */,
+				B641F9F11C1AE249000D8068 /* HomeViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D531529C5CE25795F32378A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JKPinTu-Swift/Pods-JKPinTu-Swift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B666471CC6D15CDFEC1DA85F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D2D81E1B60C327823C759C7F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JKPinTu-Swift/Pods-JKPinTu-Swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B641F9BE1C1AE088000D8068 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B641F9F61C1AE249000D8068 /* JKHBTagDetailInfo.swift in Sources */,
+				B641F9F71C1AE249000D8068 /* JKHBTagInfo.swift in Sources */,
+				B641F9F21C1AE249000D8068 /* JKHBTagCell.swift in Sources */,
+				B641F9EF1C1AE249000D8068 /* GameViewController.swift in Sources */,
+				B641F9F91C1AE249000D8068 /* OtherViewController.swift in Sources */,
+				B641F9ED1C1AE249000D8068 /* BaseViewController.swift in Sources */,
+				B641F9EC1C1AE249000D8068 /* BaseNavigationController.swift in Sources */,
+				B641F9F51C1AE249000D8068 /* JKHBTagViewController.swift in Sources */,
+				B641F9F01C1AE249000D8068 /* HomeViewController.swift in Sources */,
+				B641F9F41C1AE249000D8068 /* JKHBImageListViewController.swift in Sources */,
+				B641F9EB1C1AE249000D8068 /* AppConstants.swift in Sources */,
+				B641F9EE1C1AE249000D8068 /* GameView.swift in Sources */,
+				B641F9F81C1AE249000D8068 /* JKGridInfo.swift in Sources */,
+				B641F9C61C1AE088000D8068 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B641F9C91C1AE088000D8068 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B641F9CA1C1AE088000D8068 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B641F9CE1C1AE088000D8068 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B641F9CF1C1AE088000D8068 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B641F9D21C1AE088000D8068 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B641F9D31C1AE088000D8068 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B641F9D51C1AE088000D8068 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3ECA3B90382E8416196699A5 /* Pods-JKPinTu-Swift.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				INFOPLIST_FILE = "JKPinTu-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Bingjie.JKPinTu-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "92cbcc59-d39a-4d41-b19c-90a9120d2f0d";
+			};
+			name = Debug;
+		};
+		B641F9D61C1AE088000D8068 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92DFFAB78212E6391E232A3D /* Pods-JKPinTu-Swift.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				INFOPLIST_FILE = "JKPinTu-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Bingjie.JKPinTu-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "92cbcc59-d39a-4d41-b19c-90a9120d2f0d";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B641F9BD1C1AE088000D8068 /* Build configuration list for PBXProject "JKPinTu-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B641F9D21C1AE088000D8068 /* Debug */,
+				B641F9D31C1AE088000D8068 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B641F9D41C1AE088000D8068 /* Build configuration list for PBXNativeTarget "JKPinTu-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B641F9D51C1AE088000D8068 /* Debug */,
+				B641F9D61C1AE088000D8068 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B641F9BA1C1AE088000D8068 /* Project object */;
+}
