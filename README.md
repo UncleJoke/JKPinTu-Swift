@@ -17,9 +17,9 @@
 
 
 
-<img src="./ScreenShot/0001.png" style="max-width:50%;"/>
+<img src="./ScreenShot/0001.png" style="max-width:30%;"/>
 
-<img src="./ScreenShot/0002.png" style="max-width:50%;"/>
+<img src="./ScreenShot/0002.png" style="max-width:30%;"/>
 
 
 
