@@ -11,6 +11,7 @@ import Alamofire
 import DGElasticPullToRefresh
 import SwiftyJSON
 
+
 class JKHBTagViewController: UITableViewController {
 
     private let cellIdentifier = "UITableViewCell"
@@ -92,37 +93,26 @@ class JKHBTagViewController: UITableViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 class JKHBNavigationController:BaseNavigationController {
     
+    var imageBlock : ((AnyObject) -> Void)?
+    
     class func initJKHBNavigationController()->JKHBNavigationController{
         let vc = JKHBTagViewController()
         let nav:JKHBNavigationController = JKHBNavigationController(rootViewController:vc)
-        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "取消", style: .Plain, target: nav, action: Selector("dismissClick"))
+        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "取消", style: .Plain, target: nav, action: Selector("dismiss"))
         return nav
     }
     
-    func dismissClick(){
-        self.dismissViewControllerAnimated(true) { () -> Void in
+    func dismiss(){
+        self.dismissClick { () -> Void in
         }
+    }
+    
+    func dismissClick(completion: (() -> Void)?){
+        self.dismissViewControllerAnimated(true, completion: completion)
     }
     
     override func viewDidLoad() {

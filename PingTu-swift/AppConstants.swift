@@ -13,7 +13,9 @@ let SCREEN_BOUNDS = UIScreen.mainScreen().bounds
 let SCREEN_WIDTH  = UIScreen.mainScreen().bounds.width
 let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.height
 
-let BOTTOMHEIGHT  = 49
+let STATUSBARHEIGHT  = CGFloat(20)
+let TOPBARHEIGHT     = CGFloat(44)
+let BOTTOMHEIGHT  = CGFloat(49)
 
 
 /*!

@@ -21,7 +21,7 @@ class JKHBImageListViewController: UICollectionViewController {
     convenience init(){
         let layout = UICollectionViewFlowLayout()
         let width = SCREEN_WIDTH/3 - 2
-        layout.itemSize = CGSizeMake(width, width)
+        layout.itemSize = CGSizeMake(width, width * 1.5)
         layout.sectionInset = UIEdgeInsetsZero
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 2
@@ -78,9 +78,14 @@ class JKHBImageListViewController: UICollectionViewController {
         let tag = self.tags[indexPath.row] as! JKHBTagDetailInfo
         let url = NSURL(string: tag.originalImageURL)
         KingfisherManager().downloader.downloadImageWithURL(url!, progressBlock: { (receivedSize, totalSize) -> () in
-            print(receivedSize)
+
             }) { (image, error, imageURL, originalData) -> () in
-                print(imageURL)
+
+                (self.navigationController as! JKHBNavigationController).dismissClick({ () -> Void in
+                    if((self.navigationController as! JKHBNavigationController).imageBlock != nil){
+                        (self.navigationController as! JKHBNavigationController).imageBlock!(image!)
+                    }
+                })
         }
     }
     

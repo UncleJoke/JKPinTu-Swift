@@ -14,9 +14,14 @@ class GameViewController: BaseViewController {
     
     
     var gameView : GameView!
+    var preView : UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.edgesForExtendedLayout = .None
+        self.extendedLayoutIncludesOpaqueBars = true
+        ;
         self.title = "拼图"
         
         let settingButton = UIBarButtonItem.init(title: "设置", style: .Plain, target: self, action: Selector("settingButtonClick"))
@@ -25,26 +30,47 @@ class GameViewController: BaseViewController {
         self.navigationItem.rightBarButtonItems = [huabanButton,refreshButton,settingButton]
         
         // Do any additional setup after loading the view.
-        let rect = CGRectMake(20, 20, SCREEN_WIDTH - 2*20, SCREEN_WIDTH - 2*20)
+        let rect = CGRectMake(20, 10, SCREEN_WIDTH - 2*20, SCREEN_WIDTH - 2*20)
         self.gameView = GameView(frame: rect)
         gameView.backgroundColor = UIColor.clearColor()
         self.view.addSubview(gameView)
-        self.changePhotoClick()
-        
         
         let chechButton = UIButton(type: .Custom)
         chechButton.setTitle("check", forState: .Normal)
         chechButton.setTitleColor(UIColor.randomColor(), forState: .Normal)
-        chechButton.addTarget(self, action: Selector("checkGameOver"), forControlEvents: .TouchUpInside)
-        chechButton.frame = CGRectMake(0, self.gameView.frame.origin.y + self.gameView.frame.size.width + 20, SCREEN_WIDTH, 30)
+        chechButton.addTarget(self, action: Selector("checkGameOver:"), forControlEvents: .TouchUpInside)
+        chechButton.frame = CGRectMake(0, self.gameView.frame.origin.y + self.gameView.frame.size.height + 10, SCREEN_WIDTH, 20)
         self.view.addSubview(chechButton)
+        
+        self.preView = UIImageView()
+        self.preView.frame = CGRectMake(0, chechButton.frame.origin.y + chechButton.frame.size.height + 15, SCREEN_WIDTH, self.view.bounds.size.height - chechButton.frame.origin.y - chechButton.frame.size.height - STATUSBARHEIGHT - TOPBARHEIGHT - 30)
+        self.preView.contentMode = .ScaleAspectFit
+        self.view.addSubview(self.preView)
+        
+        self.changePhotoClick()
     }
     
     func huabanClick(){
     
         let nav:JKHBNavigationController = JKHBNavigationController.initJKHBNavigationController()
+        nav.imageBlock = { (image) -> Void in
+            let newImage = self.dealWithImage(image as! UIImage)
+            self.gameView.image = newImage
+            self.preView.image = newImage
+        }
+
         self.presentViewController(nav, animated: true) { () -> Void in
         }
+    }
+    
+    func dealWithImage(image:UIImage) -> UIImage {
+        let w = image.size.width
+        let h = image.size.height
+        let imageWidth = w>h ? h: w
+        let px = w>h ? (w - imageWidth)*0.5 : 0
+        let py = w>h ? 0 : (h - imageWidth)*0.5
+        let newImage = UIImage.clipImage(image, withRect: CGRectMake(px, py, imageWidth, imageWidth))
+        return newImage
     }
     
     func settingButtonClick(){
@@ -53,7 +79,7 @@ class GameViewController: BaseViewController {
         let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        let array = [3,4,5,6,7]
+        let array = [3,4,5,6]
         for value in array{
             let name = String(value) + "*" +  String(value)
             let a = UIAlertAction(title: name, style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
@@ -69,34 +95,17 @@ class GameViewController: BaseViewController {
         let index = arc4randomInRange(0, to: 4)
         let imageName = "00" + String(index)
         self.gameView.image = UIImage(named: imageName)
+        self.preView.image = UIImage(named: imageName)
     }
     
     
-    func checkGameOver(){
+    func checkGameOver(button:UIButton){
         
         if(self.gameView.checkGameOver() == true){
-            print("恭喜拼图成功，游戏结束")
+            button.setTitle("恭喜拼图成功，游戏结束", forState: .Normal)
         }else{
-            print("还没拼出来，加油哦")
+            button.setTitle("check again", forState: .Normal)
         }
     }
     
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
