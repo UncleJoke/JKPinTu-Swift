@@ -1,4 +1,4 @@
-# JKPingTu-swift
+# JKPinTu-Swift
 现学现做的第一个swift版本拼图游戏demo
 
 代码有点乱，还没整理，见谅
