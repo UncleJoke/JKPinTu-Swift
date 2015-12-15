@@ -39,6 +39,7 @@ class GameView: UIView {
     private var views = NSMutableArray()
     private var positions:[Position] = []//移动的路径
 
+    private var isMoving = false
     
     private var numberOfGrids:Int {
         get{
@@ -184,7 +185,7 @@ class GameView: UIView {
     }
     
     
-    func atomaticMove(repeatCount:Int){
+    private func atomaticMove(repeatCount:Int){
         
         if self.swapNum <= 0 {
             self.swapNum = randomSwapCount
@@ -212,6 +213,8 @@ class GameView: UIView {
     
     func resetViews(){
         
+        self.lastPositions.removeAll()
+        self.positions.removeAll()
         for temp in self.views {
             let item = temp as! JKGridInfo
             item.imageView!.removeFromSuperview()
@@ -294,10 +297,10 @@ class GameView: UIView {
             return
         }
         
-        if(isClick){
+        if(isMoving){
             return
         }
-        isClick = true
+        isMoving = true
         
         let clickInfo = self.clickedGrid(recognizer.view!)
         var endLocation = 0
@@ -331,25 +334,24 @@ class GameView: UIView {
         
         if(placeholderInfo != nil){
             self.moveGrid(from: clickInfo, to: placeholderInfo!, completion: { () -> Void in
-                self.isClick = false
+                self.isMoving = false
             })
         }else{
-            isClick = false
+            isMoving = false
             print(clickInfo)
         }
     }
     
-    var isClick = false
     func imageviewTapGestures(recognizer:UITapGestureRecognizer){
         
         if (self.gameMode == .swapping){
             return
         }
         
-        if(isClick){
+        if(isMoving){
             return
         }
-        isClick = true
+        isMoving = true
         
         let clickInfo = self.clickedGrid(recognizer.view!)
         
@@ -357,14 +359,12 @@ class GameView: UIView {
         if(self.checkMoveFrom(clickInfo, placeholderInfo: placeholder)){
             
             self.moveGrid(from: clickInfo, to: placeholder, completion: { () -> Void in
-                self.isClick = false
+                self.isMoving = false
             })
             
         }else{
-            isClick = false
+            isMoving = false
         }
-
-        
     }
     
     private func clickedGrid(view:UIView) -> JKGridInfo{
@@ -440,9 +440,7 @@ class GameView: UIView {
     
     func completeAllGridByPositions(){
         
-//        let p = self.positions.first
         print(self.positions)
-        
         let count = self.positions.count
         
         if count < 2 {
