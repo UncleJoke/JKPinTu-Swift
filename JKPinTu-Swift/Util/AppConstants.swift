@@ -30,3 +30,8 @@ func arc4randomInRange(start:Int ,to end:Int)->Int{
     let count = UInt32(end - start)
     return  Int(arc4random_uniform(count)) + start
 }
+
+
+public func JKLog(items: Any...){
+    print(items)
+}

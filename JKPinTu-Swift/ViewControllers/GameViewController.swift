@@ -25,7 +25,7 @@ class GameViewController: BaseViewController {
         self.title = "拼图"
         
         let settingButton = UIBarButtonItem(title: "设置", style: .Plain, target: self, action: Selector("settingButtonClick"))
-        let refreshButton = UIBarButtonItem(title: "换图", style: .Plain, target: self, action: Selector("changePhotoClick"))
+        let refreshButton = UIBarButtonItem(title: "random", style: .Plain, target: self, action: Selector("changePhotoClick"))
         let huabanButton = UIBarButtonItem(title: "花瓣", style: .Plain, target: self, action: Selector("huabanClick"))
         self.navigationItem.rightBarButtonItems = [huabanButton,refreshButton,settingButton]
         
@@ -47,7 +47,12 @@ class GameViewController: BaseViewController {
         self.preView.contentMode = .ScaleAspectFit
         self.view.addSubview(self.preView)
         
-        self.changePhotoClick()
+        let index = arc4randomInRange(0, to: 4)
+        let imageName = "00" + String(index)
+        self.gameView.image = UIImage(named: imageName)
+        self.preView.image = UIImage(named: imageName)
+        
+        self.gameView.numberOfRows = 4
     }
     
     func huabanClick(){
@@ -74,9 +79,6 @@ class GameViewController: BaseViewController {
     }
     
     func settingButtonClick(){
-        
-        self.gameView.randomGrids()
-        return
         
         let alertController = UIAlertController(title: "设置", message: "", preferredStyle: .ActionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
@@ -107,14 +109,14 @@ class GameViewController: BaseViewController {
     
     func changePhotoClick(){
         
-        let index = arc4randomInRange(0, to: 4)
-        let imageName = "00" + String(index)
-        self.gameView.image = UIImage(named: imageName)
-        self.preView.image = UIImage(named: imageName)
+        self.gameView.randomGrids()
     }
     
     
     func checkGameOver(button:UIButton){
+        
+        self.gameView.completeAllGridByPositions()
+        return
         
         if(self.gameView.checkGameOver() == true){
             button.setTitle("恭喜拼图成功，游戏结束", forState: .Normal)

@@ -15,11 +15,11 @@ class JKGridInfo: NSObject {
     
     var imageView:UIImageView!
     
-    var imageInfo:JKImageInfo?{
-        didSet{
-            self.imageView.image = imageInfo?.image
-        }
-    }
+//    var imageInfo:JKImageInfo?{
+//        didSet{
+//            self.imageView.image = imageInfo?.image
+//        }
+//    }
     
     var sort:Int = 0
 
@@ -28,11 +28,4 @@ class JKGridInfo: NSObject {
         self.imageView = imageView
         self.location = location
     }
-}
-
-class JKImageInfo: NSObject {
-
-    var imageSortNumber:Int = 0
-    var image:UIImage?
-
 }

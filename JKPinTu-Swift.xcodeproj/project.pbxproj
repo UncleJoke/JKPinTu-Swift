@@ -33,6 +33,7 @@
 		B673D4CF1C1BBABA004E5D35 /* OtherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B673D4C11C1BBABA004E5D35 /* OtherViewController.xib */; };
 		B673D4D01C1BBABA004E5D35 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4C31C1BBABA004E5D35 /* GameView.swift */; };
 		B673D4D21C1BBB84004E5D35 /* JKGridInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4D11C1BBB84004E5D35 /* JKGridInfo.swift */; };
+		B6AF59C51C204D440076B3ED /* JKArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AF59C41C204D440076B3ED /* JKArrayExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		B673D4C11C1BBABA004E5D35 /* OtherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherViewController.xib; sourceTree = "<group>"; };
 		B673D4C31C1BBABA004E5D35 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B673D4D11C1BBB84004E5D35 /* JKGridInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKGridInfo.swift; sourceTree = "<group>"; };
+		B6AF59C41C204D440076B3ED /* JKArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKArrayExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				B659D73D1C1FB6690025B527 /* JKNSDateExtension.swift */,
 				B659D73E1C1FB6690025B527 /* JKNSStringExtension.swift */,
+				B6AF59C41C204D440076B3ED /* JKArrayExtension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				B641F9ED1C1AE249000D8068 /* BaseViewController.swift in Sources */,
 				B641F9EC1C1AE249000D8068 /* BaseNavigationController.swift in Sources */,
 				B641F9C61C1AE088000D8068 /* AppDelegate.swift in Sources */,
+				B6AF59C51C204D440076B3ED /* JKArrayExtension.swift in Sources */,
 				B659D7451C1FB6690025B527 /* JKUIColorExtension.swift in Sources */,
 				B659D7431C1FB6690025B527 /* JKNSDateExtension.swift in Sources */,
 				B673D4C51C1BBABA004E5D35 /* GameViewController.swift in Sources */,
