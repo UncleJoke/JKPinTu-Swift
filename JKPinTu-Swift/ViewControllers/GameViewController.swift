@@ -87,6 +87,18 @@ class GameViewController: BaseViewController {
             }
             alertController.addAction(a)
         }
+        
+        let mode1 = UIAlertAction(title: "正常模式", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
+            self.gameView.gameMode = .normal
+        }
+        alertController.addAction(mode1)
+        
+        let mode2 = UIAlertAction(title: "对换模式", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
+            self.gameView.gameMode = .swapping
+        }
+        alertController.addAction(mode2)
+        
+        
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     

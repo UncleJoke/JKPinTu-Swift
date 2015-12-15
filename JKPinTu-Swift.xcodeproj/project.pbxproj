@@ -497,7 +497,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bingjie.JKPinTu-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "92cbcc59-d39a-4d41-b19c-90a9120d2f0d";
+				PROVISIONING_PROFILE = "2964db2d-1224-424b-b25b-c88503306aee";
 			};
 			name = Debug;
 		};
@@ -512,7 +512,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bingjie.JKPinTu-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "92cbcc59-d39a-4d41-b19c-90a9120d2f0d";
+				PROVISIONING_PROFILE = "2964db2d-1224-424b-b25b-c88503306aee";
 			};
 			name = Release;
 		};

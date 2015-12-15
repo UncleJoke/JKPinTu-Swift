@@ -8,7 +8,12 @@
 
 import UIKit
 
-
+public enum JKGameMode : Int {
+    
+    case normal
+    case swapping
+    
+}
 
 class GameView: UIView {
 
@@ -34,6 +39,14 @@ class GameView: UIView {
             self.reloadData()
         }
     }
+    
+    var gameMode:JKGameMode = .normal{
+        
+        didSet{
+            self.resetViews()
+        }
+    }
+    
     
     func checkGameOver()->Bool{
         
@@ -150,66 +163,157 @@ class GameView: UIView {
             let imageview = UIImageView(frame: CGRectMake(CGFloat(x)*w, CGFloat(y)*h, CGFloat(w), CGFloat(h)))
             imageview.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
             imageview.contentMode = .ScaleAspectFit
-            imageview.layer.borderWidth = (index == (self.numberOfGrids-1)) ? 4 : 1
-            imageview.layer.borderColor = (index == (self.numberOfGrids-1)) ? UIColor.randomColor().CGColor : UIColor.whiteColor().CGColor
+            imageview.layer.borderWidth = (index == (self.numberOfGrids-1) && self.gameMode == .normal) ? 4 : 1
+            imageview.layer.borderColor = (index == (self.numberOfGrids-1) && self.gameMode == .normal) ? UIColor.randomColor().CGColor : UIColor.whiteColor().CGColor
             imageview.layer.cornerRadius = 3
             imageview.clipsToBounds = true
-            imageview.addTapGesturesTarget(self, action: Selector("imageviewTapGestures:"))
             imageview.tag = index
             
-            let info = JKGridInfo.init(location: index, imageView: imageview)
+            imageview.userInteractionEnabled = true
+            let tapGesture = UITapGestureRecognizer.init(target: self, action: Selector("imageviewTapGestures:"))
+            tapGesture.numberOfTapsRequired = 1
+            imageview.addGestureRecognizer(tapGesture)
+            
+            let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+            leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.Left
+            imageview.addGestureRecognizer(leftSwipeGesture)
+            
+            let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+            rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.Right
+            imageview.addGestureRecognizer(rightSwipeGesture)
+            
+            let upSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+            upSwipeGesture.direction = UISwipeGestureRecognizerDirection.Up
+            imageview.addGestureRecognizer(upSwipeGesture)
+            
+            let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+            downSwipeGesture.direction = UISwipeGestureRecognizerDirection.Down
+            imageview.addGestureRecognizer(downSwipeGesture)
+            
+            
+            let info = JKGridInfo(location: index, imageView: imageview)
             self.views.append(info)
             self.addSubview(imageview)
         }
         self.sendSubviewToBack((self.views.last?.imageView)!)
     }
     
-    var isClick = false
-    func imageviewTapGestures(recognizer:UITapGestureRecognizer){
+    
+    
+    func handleSwipeFrom(recognizer:UISwipeGestureRecognizer) {
+        
+        if (self.gameMode == .normal){
+            return
+        }
         
         if(isClick){
             return
         }
         isClick = true
         
-        var clickInfo:JKGridInfo?
+        let clickInfo = self.clickedGrid(recognizer.view!)
+        var endLocation = 0
         
+        let direction = recognizer.direction
+        switch (direction){
+        case UISwipeGestureRecognizerDirection.Left:
+            endLocation = clickInfo.location - 1
+            break
+        case UISwipeGestureRecognizerDirection.Right:
+            endLocation = clickInfo.location + 1
+            break
+        case UISwipeGestureRecognizerDirection.Up:
+            endLocation = clickInfo.location - self.numberOfRows
+            break
+        case UISwipeGestureRecognizerDirection.Down:
+            endLocation = clickInfo.location + self.numberOfRows
+            break
+        default:
+            break;
+        }
+        
+        var placeholderInfo:JKGridInfo?
+        for temp in self.views{
+            if(temp.location == endLocation){
+                placeholderInfo = temp
+                break
+            }
+        }
+        
+        if(placeholderInfo != nil){
+            self.moveGrid(from: clickInfo, to: placeholderInfo!, completion: { () -> Void in
+                self.isClick = false
+            })
+        }else{
+            isClick = false
+            print(clickInfo)
+        }
+    }
+    
+    var isClick = false
+    func imageviewTapGestures(recognizer:UITapGestureRecognizer){
+        
+        if (self.gameMode == .swapping){
+            return
+        }
+        
+        if(isClick){
+            return
+        }
+        isClick = true
+        
+        let clickInfo = self.clickedGrid(recognizer.view!)
+        
+        let placeholderInfo = self.views.last
+        if(self.checkMoveFrom(clickInfo, placeholderInfo: placeholderInfo!)){
+            
+            self.moveGrid(from: clickInfo, to: placeholderInfo!, completion: { () -> Void in
+                self.isClick = false
+            })
+            
+        }else{
+            isClick = false
+        }
+
+        
+    }
+    
+    private func clickedGrid(view:UIView) -> JKGridInfo{
+        
+        var clickInfo:JKGridInfo?
         for item in self.views {
-            if((item.imageView?.isEqual(recognizer.view)) == true){
+            if((item.imageView?.isEqual(view)) == true){
                 clickInfo = item
                 break;
             }
         }
+        return clickInfo!
+    }
+    
+    private func moveGrid(from g1:JKGridInfo, to g2:JKGridInfo,completion:()->Void){
         
-        let placeholderInfo = self.views.last
-        if(self.checkMoveFrom(clickInfo!, placeholderInfo: placeholderInfo!)){
-            
-            /// 位置信息
-            let location1 = clickInfo?.location
-            let location2 = placeholderInfo?.location
-            /// 坐标
-            let p1 = clickInfo?.imageView?.center
-            let p2 = placeholderInfo?.imageView?.center
-            
-            /*!
-            *  @author Bingjie, 15-12-08 14:12:45
-            *
-            *  互换坐标以及位置序号
-            */
-            UIView.animateWithDuration(0.25, animations: { () -> Void in
-                clickInfo?.imageView?.center = p2!
-                placeholderInfo?.imageView?.center = p1!
-                }, completion: { (completion) -> Void in
-                    clickInfo?.location = location2!
-                    placeholderInfo?.location = location1!
-                    self.isClick = false
-            })
-            
-        }else{
-            
-            isClick = false
-            print(clickInfo)
-        }
+        /// 位置信息
+        let location1 = g1.location
+        let location2 = g2.location
+        /// 坐标
+        let p1 = g1.imageView?.center
+        let p2 = g2.imageView?.center
+        
+        /*!
+        *  @author Bingjie, 15-12-08 14:12:45
+        *
+        *  互换坐标以及位置序号
+        */
+        UIView.animateWithDuration(0.25, animations: { () -> Void in
+            g1.imageView.center = p2!
+            g2.imageView.center = p1!
+            }, completion: { (finish) -> Void in
+                g1.location = location2
+                g2.location = location1
+                
+                completion()
+
+        })
     }
     
     /*!
