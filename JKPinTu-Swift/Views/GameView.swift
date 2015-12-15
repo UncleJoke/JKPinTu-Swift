@@ -9,15 +9,26 @@
 import UIKit
 
 public enum JKGameMode : Int {
-    
     case normal
     case swapping
-    
+}
+
+public enum JKGridBorderType : Int {
+    case up
+    case left
+    case down
+    case right
+    case other
 }
 
 class GameView: UIView {
 
-    private var views = [JKGridInfo]()
+//    private var randomSwapCount:Int = 5 //随机移动次数
+    private var swapNum = 5
+    
+//    private var views = [JKGridInfo]()
+    private var views = NSMutableArray()
+
     
     private var numberOfGrids:Int {
         get{
@@ -51,9 +62,9 @@ class GameView: UIView {
     func checkGameOver()->Bool{
         
         var succ = true
-        for item in self.views{
-
-            if(item == self.views.last){
+        for temp in self.views{
+            let item = temp as! JKGridInfo
+            if(item == self.views.lastObject as! JKGridInfo){
                 break
             }
             
@@ -80,55 +91,155 @@ class GameView: UIView {
         
         let images:NSMutableArray! = NSMutableArray()
         
-        for item in self.views {
+        for temp in self.views {
+            
+            let item = temp as! JKGridInfo
+            
             let x = (item.imageView?.tag)! % self.numberOfRows
             let y = (item.imageView?.tag)! / self.numberOfRows
             let rect = CGRectMake(CGFloat(x)*imageW, CGFloat(y)*imageH, CGFloat(imageW), CGFloat(imageH))
             let tempImage = UIImage.clipImage(self.image!, withRect: rect)
             
-            let imageInfo = JKImageInfo()
-            imageInfo.image = tempImage
-            imageInfo.imageSortNumber = item.imageView.tag
+            item.imageView!.image = tempImage
+            item.sort = self.views.indexOfObject(temp)
             
-            images.addObject(imageInfo)
+//            let x = (item.imageView?.tag)! % self.numberOfRows
+//            let y = (item.imageView?.tag)! / self.numberOfRows
+//            let rect = CGRectMake(CGFloat(x)*imageW, CGFloat(y)*imageH, CGFloat(imageW), CGFloat(imageH))
+//            let tempImage = UIImage.clipImage(self.image!, withRect: rect)
+//
+//            let imageInfo = JKImageInfo()
+//            imageInfo.image = tempImage
+//            imageInfo.imageSortNumber = item.imageView.tag
+//            
+//            images.addObject(imageInfo)
         }
 
-        /*!
-        *  @author Bingjie, 15-12-09 17:12:35
-        *
-        *  打乱的次数等于每行的格子数 * 2
-        */
-        for _ in 0..<self.numberOfRows*2{
-            self.randomSortArray(images)
+//        /*!
+//        *  @author Bingjie, 15-12-09 17:12:35
+//        *
+//        *  打乱的次数等于每行的格子数 * 2
+//        */
+//        for _ in 0..<self.numberOfRows*2{
+//            self.randomSortArray(images)
+//        }
+//        
+//        /*!
+//        *  @author Bingjie, 15-12-09 17:12:51
+//        *
+//        *  合并图片数组到self.views里边去
+//        */
+//        for index in 0..<self.views.count{
+//            let gridInfo = self.views[index]
+//            let imageInfo = images[index]
+//            
+//            gridInfo.imageInfo = imageInfo as? JKImageInfo
+//            gridInfo.location = index
+//            
+//            let x = (gridInfo.imageView?.tag)! % self.numberOfRows
+//            let y = (gridInfo.imageView?.tag)! / self.numberOfRows
+//            UIView.animateWithDuration(0.15, animations: { () -> Void in
+//                gridInfo.imageView?.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
+//            })
+//            gridInfo.location = index
+//        }
+    }
+    
+    /*!
+    随机获取一个占位符附近的格子
+    
+    - parameter placeholder: 占位符
+    
+    - returns:
+    */
+    func randomGridNearbyPlaceholder(placeholder:JKGridInfo) -> JKGridInfo{
+        
+        var nearPositions:[Int] = []
+        
+        let types = self.borderType(placeholder)
+        
+        if (types.contains(.left) == false) {
+            nearPositions.append(placeholder.location-1)
+        }
+        if (types.contains(.right) == false) {
+            nearPositions.append(placeholder.location+1)
+        }
+        if (types.contains(.up) == false) {
+            nearPositions.append(placeholder.location-self.numberOfRows)
+        }
+        if (types.contains(.down) == false) {
+            nearPositions.append(placeholder.location+self.numberOfRows)
         }
         
-        /*!
-        *  @author Bingjie, 15-12-09 17:12:51
-        *
-        *  合并图片数组到self.views里边去
-        */
-        for index in 0..<self.views.count{
-            let gridInfo = self.views[index]
-            let imageInfo = images[index]
-            
-            gridInfo.imageInfo = imageInfo as? JKImageInfo
-            gridInfo.location = index
-            
-            let x = (gridInfo.imageView?.tag)! % self.numberOfRows
-            let y = (gridInfo.imageView?.tag)! / self.numberOfRows
-            UIView.animateWithDuration(0.15, animations: { () -> Void in
-                gridInfo.imageView?.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
-            })
-            gridInfo.location = index
+//        print(nearPositions)
+        
+        let randomIndex = arc4randomInRange(0, to: nearPositions.count)
+        let randomPosition = nearPositions[randomIndex]
+        
+        var nextGrid:JKGridInfo?
+        for item in self.views{
+            if item.location == randomPosition {
+                nextGrid = item as? JKGridInfo
+                break
+            }
         }
+        if nextGrid == nil{
+            nextGrid = self.randomGridNearbyPlaceholder(placeholder)
+        }
+        
+        return nextGrid!
     }
+    
+    func placeholderGridInfo() -> JKGridInfo{
+        
+        var p:JKGridInfo?
+        for temp in self.views {
+            let item = temp as! JKGridInfo
+            if item.sort == self.numberOfGrids - 1 {
+                p = item
+                break
+            }
+        }
+        return p!
+    }
+    
+    
+    func atomaticMove(repeatCount:Int){
+        
+        if self.swapNum <= 0 {
+            self.swapNum = 20
+            return
+        }
+    
+        let placeholder = self.placeholderGridInfo()
+        
+        let nextGrid = self.randomGridNearbyPlaceholder(placeholder)
+        
+        self.moveGrid(from: nextGrid, to: placeholder, durationPerStep: 0.15, completion: { () -> Void in
+            self.swapNum = self.swapNum - 1
+            self.atomaticMove(self.swapNum)
+        })
+    }
+    
+    func randomGrids(){
+        
+        self.atomaticMove(self.swapNum)
+        
+//        let placeholder = self.placeholderGridInfo()
+//        let nextGrid = self.randomGridNearbyPlaceholder(placeholder)
+//        self.moveGrid(from: nextGrid, to: placeholder, durationPerStep: 0.05, completion: { () -> Void in
+//        })
+        
+    }
+    
     
     func resetViews(){
         
-        for item in self.views {
-            item.imageView.removeFromSuperview()
+        for temp in self.views {
+            let item = temp as! JKGridInfo
+            item.imageView!.removeFromSuperview()
         }
-        self.views.removeAll()
+        self.views.removeAllObjects()
         self.setupSubviews()
         
         if(self.image != nil){
@@ -192,10 +303,10 @@ class GameView: UIView {
             
             
             let info = JKGridInfo(location: index, imageView: imageview)
-            self.views.append(info)
+            self.views.addObject(info)
             self.addSubview(imageview)
         }
-        self.sendSubviewToBack((self.views.last?.imageView)!)
+        self.sendSubviewToBack((self.views.lastObject?.imageView)!)
     }
     
     
@@ -234,8 +345,9 @@ class GameView: UIView {
         
         var placeholderInfo:JKGridInfo?
         for temp in self.views{
+            
             if(temp.location == endLocation){
-                placeholderInfo = temp
+                placeholderInfo = temp as? JKGridInfo
                 break
             }
         }
@@ -264,10 +376,10 @@ class GameView: UIView {
         
         let clickInfo = self.clickedGrid(recognizer.view!)
         
-        let placeholderInfo = self.views.last
-        if(self.checkMoveFrom(clickInfo, placeholderInfo: placeholderInfo!)){
+        let placeholderInfo = self.views.lastObject as! JKGridInfo
+        if(self.checkMoveFrom(clickInfo, placeholderInfo: placeholderInfo)){
             
-            self.moveGrid(from: clickInfo, to: placeholderInfo!, completion: { () -> Void in
+            self.moveGrid(from: clickInfo, to: placeholderInfo, completion: { () -> Void in
                 self.isClick = false
             })
             
@@ -283,14 +395,14 @@ class GameView: UIView {
         var clickInfo:JKGridInfo?
         for item in self.views {
             if((item.imageView?.isEqual(view)) == true){
-                clickInfo = item
+                clickInfo = item as? JKGridInfo
                 break;
             }
         }
         return clickInfo!
     }
     
-    private func moveGrid(from g1:JKGridInfo, to g2:JKGridInfo,completion:()->Void){
+    private func moveGrid(from g1:JKGridInfo, to g2:JKGridInfo, durationPerStep: NSTimeInterval = 0.25 ,completion:()->Void){
         
         /// 位置信息
         let location1 = g1.location
@@ -304,15 +416,19 @@ class GameView: UIView {
         *
         *  互换坐标以及位置序号
         */
-        UIView.animateWithDuration(0.25, animations: { () -> Void in
+        UIView.animateWithDuration(durationPerStep, animations: { () -> Void in
             g1.imageView.center = p2!
             g2.imageView.center = p1!
             }, completion: { (finish) -> Void in
                 g1.location = location2
                 g2.location = location1
                 
+                let g1Index = self.views.indexOfObject(g1)
+                let g2Index = self.views.indexOfObject(g2)
+                self.views.exchangeObjectAtIndex(g1Index, withObjectAtIndex: g2Index)
+                
                 completion()
-
+                self.printList()
         })
     }
     
@@ -325,10 +441,12 @@ class GameView: UIView {
     - returns: 能否移动
     */
     private func checkMoveFrom(clickInfo:JKGridInfo ,placeholderInfo p:JKGridInfo) -> Bool{
-        let upViewLocation = p.location - self.numberOfRows
-        let downViewLocation = p.location + self.numberOfRows
-        let leftViewLocationg = p.location - 1
-        let rightViewLocation = p.location + 1
+        
+        let otherPosintion = -1
+        let upViewLocation = self.borderType(p).contains(.up) ? otherPosintion:(p.location - self.numberOfRows)
+        let downViewLocation = self.borderType(p).contains(.down) ? otherPosintion:(p.location + self.numberOfRows)
+        let leftViewLocationg = self.borderType(p).contains(.left) ? otherPosintion:(p.location - 1)
+        let rightViewLocation = self.borderType(p).contains(.right) ? otherPosintion:(p.location + 1)
         
         if(clickInfo.location == upViewLocation || clickInfo.location == downViewLocation || clickInfo.location == leftViewLocationg || clickInfo.location == rightViewLocation){
             return true
@@ -336,5 +454,59 @@ class GameView: UIView {
         return false
     }
     
+    func borderType(item:JKGridInfo) -> [JKGridBorderType]{
+        
+        var types:[JKGridBorderType] = []
+        /*!
+        *  是否为左边界的点
+        */
+        if ((item.location)%self.numberOfRows == 0){
+            types.append(.left)
+        }
+        /*!
+        *  是否为右边界
+        */
+        if ((item.location+1)%self.numberOfRows == 0){
+            types.append(.right)
+        }
+        /*!
+        *  是否为上边界
+        */
+        if (item.location < self.numberOfRows){
+            types.append(.up)
+        }
+        /*!
+        *  是否为下边界
+        */
+        if (item.location >= self.numberOfGrids - self.numberOfRows){
+            types.append(.down)
+        }
+        
+        /*!
+        *  不是边界点就是中间的拉~
+        */
+        if types.count == 0 {
+            types.append(.other)
+        }
+        return types
+    }
+    
+    func printList() {
+        print("------------------------")
+        
+        var text = ""
+        var index = 0
+        for temp in self.views {
+            
+            text += "i:\(index) sort:\((temp as! JKGridInfo).sort)  location:\((temp as! JKGridInfo).location)" + "\t"
+            if (index + 1) % self.numberOfRows == 0 {
+                text += "\n"
+            }
+            
+            index++
+        }
+        print(text)
+        
+    }
 }
 

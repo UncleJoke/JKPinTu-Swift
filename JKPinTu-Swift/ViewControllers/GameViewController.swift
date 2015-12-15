@@ -75,6 +75,9 @@ class GameViewController: BaseViewController {
     
     func settingButtonClick(){
         
+        self.gameView.randomGrids()
+        return
+        
         let alertController = UIAlertController(title: "设置", message: "", preferredStyle: .ActionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
         alertController.addAction(cancelAction)

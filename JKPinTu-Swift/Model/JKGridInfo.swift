@@ -20,6 +20,8 @@ class JKGridInfo: NSObject {
             self.imageView.image = imageInfo?.image
         }
     }
+    
+    var sort:Int = 0
 
     convenience init(location: Int, imageView:UIImageView) {
         self.init()
@@ -30,7 +32,7 @@ class JKGridInfo: NSObject {
 
 class JKImageInfo: NSObject {
 
-    var imageSortNumber:Int?
+    var imageSortNumber:Int = 0
     var image:UIImage?
 
 }
