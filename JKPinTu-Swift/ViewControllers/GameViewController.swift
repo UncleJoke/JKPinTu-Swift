@@ -24,9 +24,9 @@ class GameViewController: BaseViewController {
         ;
         self.title = "拼图"
         
-        let settingButton = UIBarButtonItem.init(title: "设置", style: .Plain, target: self, action: Selector("settingButtonClick"))
-        let refreshButton = UIBarButtonItem.init(title: "换图", style: .Plain, target: self, action: Selector("changePhotoClick"))
-        let huabanButton = UIBarButtonItem.init(title: "花瓣", style: .Plain, target: self, action: Selector("huabanClick"))
+        let settingButton = UIBarButtonItem(title: "设置", style: .Plain, target: self, action: Selector("settingButtonClick"))
+        let refreshButton = UIBarButtonItem(title: "换图", style: .Plain, target: self, action: Selector("changePhotoClick"))
+        let huabanButton = UIBarButtonItem(title: "花瓣", style: .Plain, target: self, action: Selector("huabanClick"))
         self.navigationItem.rightBarButtonItems = [huabanButton,refreshButton,settingButton]
         
         // Do any additional setup after loading the view.

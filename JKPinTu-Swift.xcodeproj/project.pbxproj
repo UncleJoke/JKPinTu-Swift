@@ -14,6 +14,11 @@
 		B641F9D01C1AE088000D8068 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B641F9CE1C1AE088000D8068 /* LaunchScreen.storyboard */; };
 		B641F9EC1C1AE249000D8068 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9D91C1AE249000D8068 /* BaseNavigationController.swift */; };
 		B641F9ED1C1AE249000D8068 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9DA1C1AE249000D8068 /* BaseViewController.swift */; };
+		B659D7431C1FB6690025B527 /* JKNSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B659D73D1C1FB6690025B527 /* JKNSDateExtension.swift */; };
+		B659D7441C1FB6690025B527 /* JKNSStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B659D73E1C1FB6690025B527 /* JKNSStringExtension.swift */; };
+		B659D7451C1FB6690025B527 /* JKUIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B659D7401C1FB6690025B527 /* JKUIColorExtension.swift */; };
+		B659D7461C1FB6690025B527 /* JKUIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B659D7411C1FB6690025B527 /* JKUIImageExtension.swift */; };
+		B659D7471C1FB6690025B527 /* JKUIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B659D7421C1FB6690025B527 /* JKUIViewExtension.swift */; };
 		B673D4C41C1BBABA004E5D35 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4B21C1BBABA004E5D35 /* AppConstants.swift */; };
 		B673D4C51C1BBABA004E5D35 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4B41C1BBABA004E5D35 /* GameViewController.swift */; };
 		B673D4C61C1BBABA004E5D35 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4B51C1BBABA004E5D35 /* HomeViewController.swift */; };
@@ -42,6 +47,11 @@
 		B641F9D11C1AE088000D8068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B641F9D91C1AE249000D8068 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		B641F9DA1C1AE249000D8068 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B659D73D1C1FB6690025B527 /* JKNSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKNSDateExtension.swift; sourceTree = "<group>"; };
+		B659D73E1C1FB6690025B527 /* JKNSStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKNSStringExtension.swift; sourceTree = "<group>"; };
+		B659D7401C1FB6690025B527 /* JKUIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKUIColorExtension.swift; sourceTree = "<group>"; };
+		B659D7411C1FB6690025B527 /* JKUIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKUIImageExtension.swift; sourceTree = "<group>"; };
+		B659D7421C1FB6690025B527 /* JKUIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKUIViewExtension.swift; sourceTree = "<group>"; };
 		B673D4B21C1BBABA004E5D35 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		B673D4B41C1BBABA004E5D35 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		B673D4B51C1BBABA004E5D35 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +124,34 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		B659D73B1C1FB6690025B527 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B659D73C1C1FB6690025B527 /* Foundation */,
+				B659D73F1C1FB6690025B527 /* UIKit */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B659D73C1C1FB6690025B527 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				B659D73D1C1FB6690025B527 /* JKNSDateExtension.swift */,
+				B659D73E1C1FB6690025B527 /* JKNSStringExtension.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		B659D73F1C1FB6690025B527 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				B659D7401C1FB6690025B527 /* JKUIColorExtension.swift */,
+				B659D7411C1FB6690025B527 /* JKUIImageExtension.swift */,
+				B659D7421C1FB6690025B527 /* JKUIViewExtension.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		B673D4B01C1BBABA004E5D35 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +163,7 @@
 		B673D4B11C1BBABA004E5D35 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				B659D73B1C1FB6690025B527 /* Extension */,
 				B673D4B21C1BBABA004E5D35 /* AppConstants.swift */,
 			);
 			path = Util;
@@ -324,17 +363,22 @@
 			files = (
 				B673D4CB1C1BBABA004E5D35 /* JKHBTagViewController.swift in Sources */,
 				B673D4CE1C1BBABA004E5D35 /* OtherViewController.swift in Sources */,
+				B659D7471C1FB6690025B527 /* JKUIViewExtension.swift in Sources */,
 				B641F9ED1C1AE249000D8068 /* BaseViewController.swift in Sources */,
 				B641F9EC1C1AE249000D8068 /* BaseNavigationController.swift in Sources */,
 				B641F9C61C1AE088000D8068 /* AppDelegate.swift in Sources */,
+				B659D7451C1FB6690025B527 /* JKUIColorExtension.swift in Sources */,
+				B659D7431C1FB6690025B527 /* JKNSDateExtension.swift in Sources */,
 				B673D4C51C1BBABA004E5D35 /* GameViewController.swift in Sources */,
 				B673D4CD1C1BBABA004E5D35 /* JKHBTagInfo.swift in Sources */,
 				B673D4D01C1BBABA004E5D35 /* GameView.swift in Sources */,
 				B673D4C81C1BBABA004E5D35 /* JKHBTagCell.swift in Sources */,
 				B673D4CC1C1BBABA004E5D35 /* JKHBTagDetailInfo.swift in Sources */,
+				B659D7461C1FB6690025B527 /* JKUIImageExtension.swift in Sources */,
 				B673D4C41C1BBABA004E5D35 /* AppConstants.swift in Sources */,
 				B673D4C61C1BBABA004E5D35 /* HomeViewController.swift in Sources */,
 				B673D4D21C1BBB84004E5D35 /* JKGridInfo.swift in Sources */,
+				B659D7441C1FB6690025B527 /* JKNSStringExtension.swift in Sources */,
 				B673D4CA1C1BBABA004E5D35 /* JKHBImageListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
