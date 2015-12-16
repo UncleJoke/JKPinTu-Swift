@@ -20,7 +20,7 @@
 
 <img src="./ScreenShot/0000.gif" style="max-width:100%;"/>
 
-<img src="./ScreenShot/0001.png" style="max-width:20%;"/><img src="./ScreenShot/0002.png" style="max-width:20%;"/>
+<img src="./ScreenShot/0001.png" style="max-width:20%;"/>   <img src="./ScreenShot/0002.png" style="max-width:20%;"/>
 
 
 
