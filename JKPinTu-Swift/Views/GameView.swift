@@ -69,7 +69,11 @@ class GameView: UIView {
         }
     }
     
+    /*!
+    检测游戏是否结束
     
+    - returns:
+    */
     func checkGameOver()->Bool{
         
         var succ = true
@@ -90,27 +94,17 @@ class GameView: UIView {
     
     func reloadData(){
         
-        /// 所有格子重置到原来位置
-//        let w = self.bounds.width/CGFloat(self.numberOfRows)
-//        let h = self.bounds.height/CGFloat(self.numberOfRows)
-        
         let imageW = (image?.size.width)!/CGFloat(self.numberOfRows) * (image?.scale)!
         let imageH = (image?.size.height)!/CGFloat(self.numberOfRows) * (image?.scale)!
-        
-//        let images:NSMutableArray! = NSMutableArray()
-        
+
         for temp in self.views {
-            
             let item = temp as! JKGridInfo
-            
             let x = (item.imageView?.tag)! % self.numberOfRows
             let y = (item.imageView?.tag)! / self.numberOfRows
             let rect = CGRectMake(CGFloat(x)*imageW, CGFloat(y)*imageH, CGFloat(imageW), CGFloat(imageH))
             let tempImage = UIImage.clipImage(self.image!, withRect: rect)
-            
             item.imageView!.image = tempImage
             item.sort = self.views.indexOfObject(temp)
-            
         }
     }
     
@@ -195,7 +189,6 @@ class GameView: UIView {
         
         let nextGrid = self.randomGridNearbyPlaceholder(placeholder)
         
-        
         self.moveGrid(from: nextGrid, to: placeholder, durationPerStep: 0.25, completion: { () -> Void in
             self.swapNum = self.swapNum - 1
             self.atomaticMove(self.swapNum)
@@ -228,11 +221,11 @@ class GameView: UIView {
     }
     
     
-    private func randomSortArray(array:NSMutableArray){
-        let x = arc4randomInRange(0, to: self.views.count-1)
-        let y = arc4randomInRange(0, to: self.views.count-1)
-        array.exchangeObjectAtIndex(x, withObjectAtIndex: y)
-    }
+//    private func randomSortArray(array:NSMutableArray){
+//        let x = arc4randomInRange(0, to: self.views.count-1)
+//        let y = arc4randomInRange(0, to: self.views.count-1)
+//        array.exchangeObjectAtIndex(x, withObjectAtIndex: y)
+//    }
    
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -525,10 +518,7 @@ class GameView: UIView {
     }
     
     func printList() {
-        
-        
         print("------------------------")
-        
         var text = ""
         var index = 0
         for temp in self.views {
@@ -538,11 +528,9 @@ class GameView: UIView {
             if (index + 1) % self.numberOfRows == 0 {
                 text += "\n"
             }
-            
             index++
         }
         print(text)
-        
     }
 }
 
