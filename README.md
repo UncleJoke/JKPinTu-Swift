@@ -6,10 +6,10 @@
 
 用到的库：
 
-+ [Alamofire](http://item.jd.com/11598468.html)
-+ [Kingfisher](http://item.jd.com/11598468.html)
-+ [DGElasticPullToRefresh](http://item.jd.com/11598468.html)
-+ [SwiftyJSON](http://item.jd.com/11598468.html)
++ [Alamofire](https://github.com/Alamofire/Alamofire)
++ [Kingfisher](https://github.com/onevcat/Kingfisher)
++ [DGElasticPullToRefresh](https://github.com/gontovnik/DGElasticPullToRefresh)
++ [SwiftyJSON](https://github.com/search?utf8=%E2%9C%93&q=SwiftyJSON)
 
 
 <p>
