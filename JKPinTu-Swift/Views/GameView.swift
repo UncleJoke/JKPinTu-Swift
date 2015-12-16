@@ -247,9 +247,9 @@ class GameView: UIView {
             let imageview = UIImageView(frame: CGRectMake(CGFloat(x)*w, CGFloat(y)*h, CGFloat(w), CGFloat(h)))
             imageview.center = CGPointMake(CGFloat(x)*w + w*0.5, CGFloat(y)*h + h*0.5)
             imageview.contentMode = .ScaleAspectFit
-            imageview.layer.borderWidth = (index == (self.numberOfGrids-1) && self.gameMode == .normal) ? 4 : 1
+            imageview.layer.borderWidth = (index == (self.numberOfGrids-1) && self.gameMode == .normal) ? 5 : 1
             imageview.layer.borderColor = (index == (self.numberOfGrids-1) && self.gameMode == .normal) ? UIColor.randomColor().CGColor : UIColor.whiteColor().CGColor
-            imageview.layer.cornerRadius = 3
+            imageview.layer.cornerRadius = (index == (self.numberOfGrids-1) && self.gameMode == .normal) ? 6 : 3
             imageview.clipsToBounds = true
             imageview.tag = index
             
