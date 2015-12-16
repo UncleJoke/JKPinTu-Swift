@@ -21,7 +21,7 @@ class GameViewController: BaseViewController {
         
         self.edgesForExtendedLayout = .None
         self.extendedLayoutIncludesOpaqueBars = true
-        ;
+        self.view.backgroundColor = UIColor.randomColor()
         self.title = "拼图"
         
         let settingButton = UIBarButtonItem(title: "设置", style: .Plain, target: self, action: Selector("settingButtonClick"))

@@ -1,26 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6yB-HR-DeO">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Base Navigation Controller-->
+        <scene sceneID="snQ-hY-Why">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JKPinTu_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="6yB-HR-DeO" customClass="BaseNavigationController" customModule="JKPinTu_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A9w-EJ-NHw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="xcd-8q-Kch" kind="relationship" relationship="rootViewController" id="GTb-N6-QRu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ke5-73-kpO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="484" y="535"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="D8H-He-oHq">
+            <objects>
+                <viewController id="xcd-8q-Kch" customClass="HomeViewController" customModule="JKPinTu_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="Mt7-6c-Ic1"/>
+                        <viewControllerLayoutGuide type="bottom" id="fFv-x3-sPg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="53Y-HE-oYi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Da2-10-5Is">
+                                <rect key="frame" x="0.0" y="337" width="600" height="44"/>
+                                <state key="normal" title="其他"/>
+                                <connections>
+                                    <action selector="otherButtonClick:" destination="xcd-8q-Kch" eventType="touchUpInside" id="3ug-qQ-cKH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtq-XE-nNu">
+                                <rect key="frame" x="0.0" y="197" width="600" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="uht-H7-77p"/>
+                                </constraints>
+                                <state key="normal" title="开始游戏"/>
+                                <connections>
+                                    <action selector="startButtonClick:" destination="xcd-8q-Kch" eventType="touchUpInside" id="tlz-0o-tAa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Da2-10-5Is" firstAttribute="top" secondItem="Vtq-XE-nNu" secondAttribute="bottom" constant="100" id="CsW-q5-tE9"/>
+                            <constraint firstItem="Vtq-XE-nNu" firstAttribute="leading" secondItem="53Y-HE-oYi" secondAttribute="leading" id="FT6-l5-8Cx"/>
+                            <constraint firstItem="Vtq-XE-nNu" firstAttribute="leading" secondItem="Da2-10-5Is" secondAttribute="leading" id="FYh-lv-3S9"/>
+                            <constraint firstItem="Vtq-XE-nNu" firstAttribute="top" secondItem="Mt7-6c-Ic1" secondAttribute="bottom" constant="133" id="Inn-yK-DDp"/>
+                            <constraint firstAttribute="trailing" secondItem="Vtq-XE-nNu" secondAttribute="trailing" id="aUK-Yg-sBY"/>
+                            <constraint firstItem="Vtq-XE-nNu" firstAttribute="trailing" secondItem="Da2-10-5Is" secondAttribute="trailing" id="wnY-S7-j9i"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Home" id="ydc-1G-1za"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xML-zT-ztZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1242" y="540"/>
         </scene>
     </scenes>
 </document>

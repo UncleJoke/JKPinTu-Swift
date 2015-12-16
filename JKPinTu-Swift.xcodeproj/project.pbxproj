@@ -22,7 +22,6 @@
 		B673D4C41C1BBABA004E5D35 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4B21C1BBABA004E5D35 /* AppConstants.swift */; };
 		B673D4C51C1BBABA004E5D35 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4B41C1BBABA004E5D35 /* GameViewController.swift */; };
 		B673D4C61C1BBABA004E5D35 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4B51C1BBABA004E5D35 /* HomeViewController.swift */; };
-		B673D4C71C1BBABA004E5D35 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B673D4B61C1BBABA004E5D35 /* HomeViewController.xib */; };
 		B673D4C81C1BBABA004E5D35 /* JKHBTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4B91C1BBABA004E5D35 /* JKHBTagCell.swift */; };
 		B673D4C91C1BBABA004E5D35 /* JKHBTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B673D4BA1C1BBABA004E5D35 /* JKHBTagCell.xib */; };
 		B673D4CA1C1BBABA004E5D35 /* JKHBImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4BB1C1BBABA004E5D35 /* JKHBImageListViewController.swift */; };
@@ -56,7 +55,6 @@
 		B673D4B21C1BBABA004E5D35 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		B673D4B41C1BBABA004E5D35 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		B673D4B51C1BBABA004E5D35 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		B673D4B61C1BBABA004E5D35 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		B673D4B91C1BBABA004E5D35 /* JKHBTagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHBTagCell.swift; sourceTree = "<group>"; };
 		B673D4BA1C1BBABA004E5D35 /* JKHBTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JKHBTagCell.xib; sourceTree = "<group>"; };
 		B673D4BB1C1BBABA004E5D35 /* JKHBImageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHBImageListViewController.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 				B673D4B71C1BBABA004E5D35 /* Huaban */,
 				B673D4B41C1BBABA004E5D35 /* GameViewController.swift */,
 				B673D4B51C1BBABA004E5D35 /* HomeViewController.swift */,
-				B673D4B61C1BBABA004E5D35 /* HomeViewController.xib */,
 				B673D4C01C1BBABA004E5D35 /* OtherViewController.swift */,
 				B673D4C11C1BBABA004E5D35 /* OtherViewController.xib */,
 			);
@@ -301,7 +298,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B641F9D01C1AE088000D8068 /* LaunchScreen.storyboard in Resources */,
-				B673D4C71C1BBABA004E5D35 /* HomeViewController.xib in Resources */,
 				B673D4CF1C1BBABA004E5D35 /* OtherViewController.xib in Resources */,
 				B673D4C91C1BBABA004E5D35 /* JKHBTagCell.xib in Resources */,
 				B641F9CD1C1AE088000D8068 /* Assets.xcassets in Resources */,
