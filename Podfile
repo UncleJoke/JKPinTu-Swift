@@ -5,5 +5,7 @@ target 'JKPinTu-Swift' do
     pod 'Kingfisher', '~> 1.8.3'
     pod 'DGElasticPullToRefresh', '~> 1.0.3'
     pod 'SwiftyJSON', '~> 2.3.2'
-#    pod 'Alamofire-SwiftyJSON'
+    pod 'MJRefresh', '~> 3.0.7'
+    pod 'ReactiveCocoa', '~> 2.5'
+    pod 'MBProgressHUD'
 end

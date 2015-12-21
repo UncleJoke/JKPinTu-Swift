@@ -65,6 +65,7 @@
 		B673D4C11C1BBABA004E5D35 /* OtherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherViewController.xib; sourceTree = "<group>"; };
 		B673D4C31C1BBABA004E5D35 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B673D4D11C1BBB84004E5D35 /* JKGridInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKGridInfo.swift; sourceTree = "<group>"; };
+		B680473E1C27FEDF0052DF42 /* JKPinTu-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKPinTu-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		B6AF59C41C204D440076B3ED /* JKArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKArrayExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +112,7 @@
 				B641F9CC1C1AE088000D8068 /* Assets.xcassets */,
 				B641F9CE1C1AE088000D8068 /* LaunchScreen.storyboard */,
 				B641F9D11C1AE088000D8068 /* Info.plist */,
+				B680473E1C27FEDF0052DF42 /* JKPinTu-Swift-Bridging-Header.h */,
 			);
 			path = "JKPinTu-Swift";
 			sourceTree = "<group>";
@@ -491,6 +493,7 @@
 			baseConfigurationReference = 3ECA3B90382E8416196699A5 /* Pods-JKPinTu-Swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = "JKPinTu-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -498,6 +501,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Bingjie.JKPinTu-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2964db2d-1224-424b-b25b-c88503306aee";
+				SWIFT_OBJC_BRIDGING_HEADER = "JKPinTu-Swift/JKPinTu-Swift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -506,6 +511,7 @@
 			baseConfigurationReference = 92DFFAB78212E6391E232A3D /* Pods-JKPinTu-Swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = "JKPinTu-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -513,6 +519,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Bingjie.JKPinTu-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2964db2d-1224-424b-b25b-c88503306aee";
+				SWIFT_OBJC_BRIDGING_HEADER = "JKPinTu-Swift/JKPinTu-Swift-Bridging-Header.h";
 			};
 			name = Release;
 		};

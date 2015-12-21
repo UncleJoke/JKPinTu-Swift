@@ -189,10 +189,9 @@ class GameView: UIView {
     
     /*!
     自动随机移动格子
-    
-    - parameter repeatCount: 移动次数
+
     */
-    private func atomaticMove(repeatCount:Int){
+    private func atomaticMove(){
         
         if self.swapNum <= 0 {
             self.swapNum = randomSwapCount
@@ -204,7 +203,7 @@ class GameView: UIView {
         
         self.moveGrid(from: nextGrid, to: placeholder, durationPerStep: 0.25, completion: { () -> Void in
             self.swapNum = self.swapNum - 1
-            self.atomaticMove(self.swapNum)
+            self.atomaticMove()
         })
     }
     
@@ -213,7 +212,7 @@ class GameView: UIView {
         if self.swapNum <= 0{
             self.swapNum = randomSwapCount
         }
-        self.atomaticMove(self.swapNum)
+        self.atomaticMove()
     }
     
     
@@ -543,15 +542,11 @@ class GameView: UIView {
     func printList() {
         print("------------------------")
         var text = ""
-        var index = 0
         for temp in self.views {
-            
-            text += "sort:\(temp.sort)  "
-//            text += "location:\((temp as! JKGridInfo).location)" + "\t"
-            if (index + 1) % self.numberOfRows == 0 {
+            text += "\t \(temp.sort) \t"
+            if (temp.location + 1) % self.numberOfRows == 0 {
                 text += "\n"
             }
-            index++
         }
         print(text)
     }
