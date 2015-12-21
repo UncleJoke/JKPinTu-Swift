@@ -26,21 +26,26 @@ struct Position {
     var sort: Int
 }
 
-let randomSwapCount:Int = 15
-let lastRandomSwapCount:Int = 2 //随机的时候需要记录最后移动位置的个数，默认记录最后4个位置
+let randomSwapCount:Int = 15 /// 随机移动次数
+let lastRandomSwapCount:Int = 2 //随机的时候需要记录最后移动位置的个数，防止随机移动的时候一直在某几个位置之前变动，默认记录最后2个位置
 
 
 class GameView: UIView {
 
     private var swapNum = randomSwapCount //随机移动次数
-    private var lastPositions:[Int] = []//最后两次移动过的点
     
-//    private var views = [JKGridInfo]()
-    private var views = NSMutableArray()
-    private var positions:[Position] = []//移动的路径
+    /// 最后两次移动过的点
+    private var lastPositions:[Int] = []
+    
+    /// 每个格子信息
+    private var views = [JKGridInfo]()
+    /// 移动的路径
+    private var positions:[Position] = []
 
+    /// 是否正在移动
     private var isMoving = false
     
+    /// 总的格子数
     private var numberOfGrids:Int {
         get{
             return self.numberOfRows*self.numberOfRows
@@ -54,7 +59,8 @@ class GameView: UIView {
             self.resetViews()
         }
     }
-
+    
+    
     var image: UIImage? {
         didSet{
             //处理图片并显示
@@ -62,6 +68,7 @@ class GameView: UIView {
         }
     }
     
+    /// 游戏类型
     var gameMode:JKGameMode = .normal{
         
         didSet{
@@ -70,16 +77,14 @@ class GameView: UIView {
     }
     
     /*!
-    检测游戏是否结束
+    检测游戏是否结束：location 与 sort 能匹配上则游戏结束
     
     - returns:
     */
     func checkGameOver()->Bool{
         
         var succ = true
-        for temp in self.views{
-            
-            let item = temp as! JKGridInfo
+        for item in self.views{
             
             if(item.sort != item.location){
                 succ = false
@@ -97,14 +102,13 @@ class GameView: UIView {
         let imageW = (image?.size.width)!/CGFloat(self.numberOfRows) * (image?.scale)!
         let imageH = (image?.size.height)!/CGFloat(self.numberOfRows) * (image?.scale)!
 
-        for temp in self.views {
-            let item = temp as! JKGridInfo
+        for item in self.views {
             let x = (item.imageView?.tag)! % self.numberOfRows
             let y = (item.imageView?.tag)! / self.numberOfRows
             let rect = CGRectMake(CGFloat(x)*imageW, CGFloat(y)*imageH, CGFloat(imageW), CGFloat(imageH))
             let tempImage = UIImage.clipImage(self.image!, withRect: rect)
             item.imageView!.image = tempImage
-            item.sort = self.views.indexOfObject(temp)
+            item.sort = self.views.indexOf(item)!
         }
     }
     
@@ -142,7 +146,7 @@ class GameView: UIView {
         var nextGrid:JKGridInfo?
         for item in self.views{
             if item.location == randomPosition {
-                nextGrid = item as? JKGridInfo
+                nextGrid = item
                 break
             }
         }
@@ -165,11 +169,15 @@ class GameView: UIView {
         return nextGrid!
     }
     
+    /*!
+    获取占位符对象
+    
+    - returns: 占位符对象
+    */
     func placeholderGridInfo() -> JKGridInfo{
         
         var p:JKGridInfo?
-        for temp in self.views {
-            let item = temp as! JKGridInfo
+        for item in self.views {
             if item.sort == self.numberOfGrids - 1 {
                 p = item
                 break
@@ -179,6 +187,11 @@ class GameView: UIView {
     }
     
     
+    /*!
+    自动随机移动格子
+    
+    - parameter repeatCount: 移动次数
+    */
     private func atomaticMove(repeatCount:Int){
         
         if self.swapNum <= 0 {
@@ -208,24 +221,16 @@ class GameView: UIView {
         
         self.lastPositions.removeAll()
         self.positions.removeAll()
-        for temp in self.views {
-            let item = temp as! JKGridInfo
+        for item in self.views {
             item.imageView!.removeFromSuperview()
         }
-        self.views.removeAllObjects()
+        self.views.removeAll()
         self.setupSubviews()
         
         if(self.image != nil){
             self.reloadData()
         }
     }
-    
-    
-//    private func randomSortArray(array:NSMutableArray){
-//        let x = arc4randomInRange(0, to: self.views.count-1)
-//        let y = arc4randomInRange(0, to: self.views.count-1)
-//        array.exchangeObjectAtIndex(x, withObjectAtIndex: y)
-//    }
    
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -253,11 +258,13 @@ class GameView: UIView {
             imageview.clipsToBounds = true
             imageview.tag = index
             
+            /// 常规模式用单击
             imageview.userInteractionEnabled = true
             let tapGesture = UITapGestureRecognizer.init(target: self, action: Selector("imageviewTapGestures:"))
             tapGesture.numberOfTapsRequired = 1
             imageview.addGestureRecognizer(tapGesture)
             
+            /// 对换模式用轻扫手势
             let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
             leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.Left
             imageview.addGestureRecognizer(leftSwipeGesture)
@@ -276,10 +283,10 @@ class GameView: UIView {
             
             
             let info = JKGridInfo(location: index, imageView: imageview)
-            self.views.addObject(info)
+            self.views.append(info)
             self.addSubview(imageview)
         }
-        self.sendSubviewToBack((self.views.lastObject?.imageView)!)
+        self.sendSubviewToBack((self.views.last?.imageView)!)
     }
     
     
@@ -320,7 +327,7 @@ class GameView: UIView {
         for temp in self.views{
             
             if(temp.location == endLocation){
-                placeholderInfo = temp as? JKGridInfo
+                placeholderInfo = temp
                 break
             }
         }
@@ -365,13 +372,21 @@ class GameView: UIView {
         var clickInfo:JKGridInfo?
         for item in self.views {
             if((item.imageView?.isEqual(view)) == true){
-                clickInfo = item as? JKGridInfo
+                clickInfo = item
                 break;
             }
         }
         return clickInfo!
     }
     
+    /*!
+    交换两个格子的位置 < 随机格子与点击格子的时候使用 >
+    
+    - parameter g1:              g1
+    - parameter g2:              g2
+    - parameter durationPerStep: 动画时间
+    - parameter completion:      动画回调
+    */
     private func moveGrid(from g1:JKGridInfo, to g2:JKGridInfo, durationPerStep: NSTimeInterval = 0.25 ,completion:()->Void){
         
         /// 位置信息
@@ -398,14 +413,22 @@ class GameView: UIView {
                 g1.location = location2
                 g2.location = location1
                 
-                let g1Index = self.views.indexOfObject(g1)
-                let g2Index = self.views.indexOfObject(g2)
-                self.views.exchangeObjectAtIndex(g1Index, withObjectAtIndex: g2Index)
+                let g1Index = self.views.indexOf(g1)
+                let g2Index = self.views.indexOf(g2)
+                self.views.exchangeObjectAtIndex(g1Index!, withObjectAtIndex: g2Index!)
                 completion()
                 self.printList()
         })
     }
     
+    /*!
+    交换两个格子的位置 < 自动完成的时候使用 >
+    
+    - parameter g1:              g1
+    - parameter g2:              g2
+    - parameter durationPerStep: 动画时间
+    - parameter completion:      动画回调
+    */
     private func reverseMoveGrid(from g1:JKGridInfo, to g2:JKGridInfo, durationPerStep: NSTimeInterval = 0.25 ,completion:()->Void){
         
         /// 位置信息
@@ -422,9 +445,9 @@ class GameView: UIView {
                 g1.location = location2
                 g2.location = location1
                 
-                let g1Index = self.views.indexOfObject(g1)
-                let g2Index = self.views.indexOfObject(g2)
-                self.views.exchangeObjectAtIndex(g1Index, withObjectAtIndex: g2Index)
+                let g1Index = self.views.indexOf(g1)
+                let g2Index = self.views.indexOf(g2)
+                self.views.exchangeObjectAtIndex(g1Index!, withObjectAtIndex: g2Index!)
                 completion()
                 self.printList()
         })
@@ -444,7 +467,7 @@ class GameView: UIView {
         let p2 = self.positions[count - 2] ///倒数第2个
         
         let placeholder = self.placeholderGridInfo()
-        let lastGridInfo = self.views[p2.position] as! JKGridInfo
+        let lastGridInfo = self.views[p2.position]
         self.reverseMoveGrid(from: placeholder, to: lastGridInfo) { () -> Void in
             self.positions.removeLast()
             self.completeAllGridByPositions()
@@ -464,10 +487,10 @@ class GameView: UIView {
         let otherPosintion = -1
         let upViewLocation = self.borderType(p).contains(.up) ? otherPosintion:(p.location - self.numberOfRows)
         let downViewLocation = self.borderType(p).contains(.down) ? otherPosintion:(p.location + self.numberOfRows)
-        let leftViewLocationg = self.borderType(p).contains(.left) ? otherPosintion:(p.location - 1)
+        let leftViewLocation = self.borderType(p).contains(.left) ? otherPosintion:(p.location - 1)
         let rightViewLocation = self.borderType(p).contains(.right) ? otherPosintion:(p.location + 1)
         
-        if(clickInfo.location == upViewLocation || clickInfo.location == downViewLocation || clickInfo.location == leftViewLocationg || clickInfo.location == rightViewLocation){
+        if(clickInfo.location == upViewLocation || clickInfo.location == downViewLocation || clickInfo.location == leftViewLocation || clickInfo.location == rightViewLocation){
             return true
         }
         return false
@@ -523,7 +546,7 @@ class GameView: UIView {
         var index = 0
         for temp in self.views {
             
-            text += "sort:\((temp as! JKGridInfo).sort)  "
+            text += "sort:\(temp.sort)  "
 //            text += "location:\((temp as! JKGridInfo).location)" + "\t"
             if (index + 1) % self.numberOfRows == 0 {
                 text += "\n"

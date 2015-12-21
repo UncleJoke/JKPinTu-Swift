@@ -10,8 +10,11 @@ import Foundation
 
 extension Array
 {
-    public func exchangeObjectAtIndex(idx1: Int, withObjectAtIndex idx2: Int){
-        
+    public mutating func exchangeObjectAtIndex(idx1: Int, withObjectAtIndex idx2: Int){
+        let o1 = self[idx1]
+        let o2 = self[idx2]
+        self[idx1] = o2
+        self[idx2] = o1
     }
 
 }
