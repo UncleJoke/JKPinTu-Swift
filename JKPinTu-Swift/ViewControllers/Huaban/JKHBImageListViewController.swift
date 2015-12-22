@@ -34,10 +34,12 @@ class JKHBImageListViewController: UICollectionViewController {
         self.collectionView?.backgroundColor = self.view.backgroundColor
         self.collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "UICollectionViewCell")
         self.sendRequest()
+        
     }
     
     func sendRequest(){
         Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/pins", parameters: ["limit": 81 , "tag":self.tagName!]).responseJSON { (respone) -> Void in
+            
             let json = JSON(respone.result.value!)
             let pins = (json.object as! NSDictionary)["pins"]
             let tempTags = JKHBTagDetailInfo.parseDataFromHuaban(pins as! Array)

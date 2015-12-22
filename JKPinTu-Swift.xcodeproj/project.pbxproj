@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A171FE12E0A0E6B96967EAEB /* Pods_JKPinTu_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A25753027E32E9F2898A37 /* Pods_JKPinTu_Swift.framework */; };
+		B63DD7E21C28EDE0001C5730 /* AlamofireSwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63DD7E11C28EDE0001C5730 /* AlamofireSwiftyJSON.swift */; };
 		B641F9C61C1AE088000D8068 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641F9C51C1AE088000D8068 /* AppDelegate.swift */; };
 		B641F9CB1C1AE088000D8068 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B641F9C91C1AE088000D8068 /* Main.storyboard */; };
 		B641F9CD1C1AE088000D8068 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B641F9CC1C1AE088000D8068 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		19A25753027E32E9F2898A37 /* Pods_JKPinTu_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JKPinTu_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ECA3B90382E8416196699A5 /* Pods-JKPinTu-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JKPinTu-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JKPinTu-Swift/Pods-JKPinTu-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		92DFFAB78212E6391E232A3D /* Pods-JKPinTu-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JKPinTu-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-JKPinTu-Swift/Pods-JKPinTu-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		B63DD7E11C28EDE0001C5730 /* AlamofireSwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireSwiftyJSON.swift; sourceTree = "<group>"; };
 		B641F9C21C1AE088000D8068 /* JKPinTu-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JKPinTu-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B641F9C51C1AE088000D8068 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B641F9CA1C1AE088000D8068 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,7 +67,7 @@
 		B673D4C11C1BBABA004E5D35 /* OtherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherViewController.xib; sourceTree = "<group>"; };
 		B673D4C31C1BBABA004E5D35 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B673D4D11C1BBB84004E5D35 /* JKGridInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKGridInfo.swift; sourceTree = "<group>"; };
-		B680473E1C27FEDF0052DF42 /* JKPinTu-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKPinTu-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		B680473E1C27FEDF0052DF42 /* JKPinTu-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKPinTu-Swift-Bridging-Header.h"; sourceTree = "<group>"; tabWidth = 3; };
 		B6AF59C41C204D440076B3ED /* JKArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKArrayExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +133,7 @@
 			children = (
 				B659D73C1C1FB6690025B527 /* Foundation */,
 				B659D73F1C1FB6690025B527 /* UIKit */,
+				B63DD7E11C28EDE0001C5730 /* AlamofireSwiftyJSON.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				B673D4C61C1BBABA004E5D35 /* HomeViewController.swift in Sources */,
 				B673D4D21C1BBB84004E5D35 /* JKGridInfo.swift in Sources */,
 				B659D7441C1FB6690025B527 /* JKNSStringExtension.swift in Sources */,
+				B63DD7E21C28EDE0001C5730 /* AlamofireSwiftyJSON.swift in Sources */,
 				B673D4CA1C1BBABA004E5D35 /* JKHBImageListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

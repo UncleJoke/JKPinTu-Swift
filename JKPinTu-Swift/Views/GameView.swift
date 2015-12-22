@@ -26,7 +26,7 @@ struct Position {
     var sort: Int
 }
 
-let randomSwapCount:Int = 15 /// 随机移动次数
+let randomSwapCount:Int = 25 /// 随机移动次数
 let lastRandomSwapCount:Int = 2 //随机的时候需要记录最后移动位置的个数，防止随机移动的时候一直在某几个位置之前变动，默认记录最后2个位置
 
 
