@@ -35,20 +35,29 @@ class JKHBImageListViewController: UICollectionViewController {
         self.collectionView?.backgroundColor = UIColor.whiteColor()
         self.collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "UICollectionViewCell")
         
-        self.collectionView!.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("sendRequest"))
-        self.collectionView!.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("sendRequest"))
+        self.collectionView!.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefresh"))
+        self.collectionView!.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefresh"))
         self.collectionView!.mj_header.beginRefreshing()
     }
     
-    func sendRequest(){
+    func headerRefresh(){
         
-        var seq = ""
+        self.sendRequest(0)
+    }
+    func footerRefresh(){
+        var seq = 0
         if self.tags.count != 0{
             let lastObjc = self.tags.lastObject as! JKHBTagDetailInfo
-            seq = lastObjc.seq == 0 ? "" : "\(lastObjc.seq)"
+            seq = lastObjc.seq == 0 ? 0 : lastObjc.seq
         }
+        self.sendRequest(seq)
+    }
+    
+    func sendRequest(seq:Int){
         
-        Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/pins", parameters: ["limit": 21 , "tag":self.tagName! , "max": seq]).jk_responseSwiftyJSON { (request, response, JSON_obj, error) -> Void in
+        let max = seq == 0 ? "" : "\(seq)"
+
+        Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/pins", parameters: ["limit": 21 , "tag":self.tagName! , "max": max]).jk_responseSwiftyJSON { (request, response, JSON_obj, error) -> Void in
             
             let pins = (JSON_obj.object as! NSDictionary)["pins"]
             let tempTags = JKHBTagDetailInfo.parseDataFromHuaban(pins as! Array)
