@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 let SCREEN_BOUNDS = UIScreen.mainScreen().bounds
 let SCREEN_WIDTH  = UIScreen.mainScreen().bounds.width
 let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.height

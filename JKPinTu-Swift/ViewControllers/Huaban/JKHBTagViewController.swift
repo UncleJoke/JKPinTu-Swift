@@ -10,48 +10,46 @@ import UIKit
 import Alamofire
 import DGElasticPullToRefresh
 import SwiftyJSON
-
+import MJRefresh
 
 class JKHBTagViewController: UITableViewController {
 
     private let cellIdentifier = "UITableViewCell"
     
     private var tags = NSMutableArray()
-    
-    deinit {
-        tableView.dg_removePullToRefresh()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.edgesForExtendedLayout = .None
         self.title = "美图分类"
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+
         
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.redColor()
-        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            
-            self?.sendRequest()
-            
-            }, loadingView: loadingView)
-        
-        tableView.dg_setPullToRefreshFillColor(UIColor.RGBColor(244, g: 244, b: 244))
-        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
-        
+        self.tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("sendRequest"))
+        self.tableView.mj_header.beginRefreshing()
     }
     
-    
     func sendRequest(){
-        Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/tags").responseJSON { (respone) -> Void in
-            let json = JSON(respone.result.value!)
-            let tempTags = JKHBTagInfo.parseDataFromHuaban(json.object as! Array)
+        
+        Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/tags").jk_responseSwiftyJSON { (request, response, JSON_obj, error) -> Void in
+            
+            let tempTags = JKHBTagInfo.parseDataFromHuaban(JSON_obj.object as! Array)
             self.tags.addObjectsFromArray(tempTags)
             self.tableView.reloadData()
-            self.tableView.dg_stopLoading()
+            self.tableView.mj_header.endRefreshing()
+            
         }
+        
+        
+//        Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/tags").responseJSON { (respone) -> Void in
+//            let json = JSON(respone.result.value!)
+//            let tempTags = JKHBTagInfo.parseDataFromHuaban(json.object as! Array)
+//            self.tags.addObjectsFromArray(tempTags)
+//            self.tableView.reloadData()
+//            self.tableView.mj_header.endRefreshing()
+//        }
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int

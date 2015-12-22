@@ -11,6 +11,7 @@ import Alamofire
 import DGElasticPullToRefresh
 import SwiftyJSON
 import Kingfisher
+import MJRefresh
 
 class JKHBImageListViewController: UICollectionViewController {
 
@@ -31,21 +32,43 @@ class JKHBImageListViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView?.backgroundColor = self.view.backgroundColor
+        self.collectionView?.backgroundColor = UIColor.whiteColor()
         self.collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "UICollectionViewCell")
-        self.sendRequest()
         
+        self.collectionView!.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("sendRequest"))
+        self.collectionView!.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("sendRequest"))
+        self.collectionView!.mj_header.beginRefreshing()
     }
     
     func sendRequest(){
-        Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/pins", parameters: ["limit": 81 , "tag":self.tagName!]).responseJSON { (respone) -> Void in
+        
+        var seq = ""
+        if self.tags.count != 0{
+            let lastObjc = self.tags.lastObject as! JKHBTagDetailInfo
+            seq = lastObjc.seq == 0 ? "" : "\(lastObjc.seq)"
+        }
+        
+        Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/pins", parameters: ["limit": 21 , "tag":self.tagName! , "max": seq]).jk_responseSwiftyJSON { (request, response, JSON_obj, error) -> Void in
             
-            let json = JSON(respone.result.value!)
-            let pins = (json.object as! NSDictionary)["pins"]
+            let pins = (JSON_obj.object as! NSDictionary)["pins"]
             let tempTags = JKHBTagDetailInfo.parseDataFromHuaban(pins as! Array)
             self.tags.addObjectsFromArray(tempTags)
             self.collectionView?.reloadData()
+            self.collectionView!.mj_header.endRefreshing()
+            self.collectionView!.mj_footer.endRefreshing()
+            
         }
+        
+//        Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/pins", parameters: ["limit": 21 , "tag":self.tagName! , "max": seq]).responseJSON { (respone) -> Void in
+//            
+//            let json = JSON(respone.result.value!)
+//            let pins = (json.object as! NSDictionary)["pins"]
+//            let tempTags = JKHBTagDetailInfo.parseDataFromHuaban(pins as! Array)
+//            self.tags.addObjectsFromArray(tempTags)
+//            self.collectionView?.reloadData()
+//            self.collectionView!.mj_header.endRefreshing()
+//            self.collectionView!.mj_footer.endRefreshing()
+//        }
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

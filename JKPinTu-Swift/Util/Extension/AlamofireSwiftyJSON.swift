@@ -19,11 +19,11 @@ extension Request {
      
      - returns: The request.
      */
-    public func responseSwiftyJSON(queue: dispatch_queue_t? = nil, completionHandler: (NSURLRequest, NSHTTPURLResponse?, SwiftyJSON.JSON, ErrorType?) -> Void) -> Self {
+    public func jk_responseSwiftyJSON(queue: dispatch_queue_t? = nil, completionHandler: (NSURLRequest, NSHTTPURLResponse?, SwiftyJSON.JSON, ErrorType?) -> Void) -> Self {
         
         return responseJSON(completionHandler: { (response) -> Void in
             var responseJSON: JSON
-            if response.result.isSuccess{
+            if response.result.isFailure{
                 responseJSON = JSON.null
             }else{
                 responseJSON = SwiftyJSON.JSON(response.result.value!)

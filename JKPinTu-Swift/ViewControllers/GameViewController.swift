@@ -45,16 +45,22 @@ class GameViewController: BaseViewController {
         let randomButton = UIButton(type: .Custom)
         randomButton.setTitle("随机一下", forState: .Normal)
         randomButton.setTitleColor(UIColor.randomColor(), forState: .Normal)
-        randomButton.addTarget(self, action: Selector("randomButton"), forControlEvents: .TouchUpInside)
+//        randomButton.addTarget(self, action: Selector("randomButton"), forControlEvents: .TouchUpInside)
         randomButton.frame = CGRectMake(chechButton.right(), self.gameView.bottom() + 10, SCREEN_WIDTH/3, 20)
         self.view.addSubview(randomButton)
+        randomButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { (button) -> Void in
+            self.randomButton()
+        }
         
         let completeButton = UIButton(type: .Custom)
         completeButton.setTitle("自动完成", forState: .Normal)
         completeButton.setTitleColor(UIColor.randomColor(), forState: .Normal)
-        completeButton.addTarget(self, action: Selector("completeButton"), forControlEvents: .TouchUpInside)
+//        completeButton.addTarget(self, action: Selector("completeButton"), forControlEvents: .TouchUpInside)
         completeButton.frame = CGRectMake(randomButton.right(), self.gameView.bottom() + 10, SCREEN_WIDTH/3, 20)
         self.view.addSubview(completeButton)
+        completeButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { (button) -> Void in
+            self.completeButton()
+        }
         
         self.preView = UIImageView()
         self.preView.frame = CGRectMake(0, chechButton.frame.origin.y + chechButton.frame.size.height + 15, SCREEN_WIDTH, self.view.bounds.size.height - chechButton.frame.origin.y - chechButton.frame.size.height - STATUSBARHEIGHT - TOPBARHEIGHT - 30)

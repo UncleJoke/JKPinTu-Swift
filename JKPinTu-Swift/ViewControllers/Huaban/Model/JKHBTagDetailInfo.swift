@@ -12,7 +12,7 @@ class JKHBTagDetailInfo: NSObject {
 
     var thumbnailImageURL:String!
     var originalImageURL:String!
-    
+    var seq:Int!
     
     class func parseDataFromHuaban(responseArray:Array<AnyObject>) -> Array<JKHBTagDetailInfo> {
         
@@ -21,10 +21,12 @@ class JKHBTagDetailInfo: NSObject {
             
             let fileInfo = (item as! NSDictionary)["file"] as! NSDictionary
             let key = fileInfo["key"] as! String
+            let seq = (item as! NSDictionary)["seq"] as! Int
             
             let tagDetail = JKHBTagDetailInfo()
             tagDetail.thumbnailImageURL = "http://img.hb.aicdn.com/" + key + "_fw" + String(236)
             tagDetail.originalImageURL = "http://img.hb.aicdn.com/" + key + "_fw" + String(658)
+            tagDetail.seq = seq
             objs.append(tagDetail)
         }
         return objs
