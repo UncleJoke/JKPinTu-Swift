@@ -8,7 +8,7 @@
 
 + [Alamofire](https://github.com/Alamofire/Alamofire)
 + [Kingfisher](https://github.com/onevcat/Kingfisher)
-+ [DGElasticPullToRefresh](https://github.com/gontovnik/DGElasticPullToRefresh)
++ [MJRefresh](https://github.com/CoderMJLee/MJRefresh)
 + [SwiftyJSON](https://github.com/search?utf8=%E2%9C%93&q=SwiftyJSON)
 
 
