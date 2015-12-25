@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import DGElasticPullToRefresh
 import SwiftyJSON
 import MJRefresh
 
@@ -26,7 +25,7 @@ class JKHBTagViewController: UITableViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
-        
+         
         self.tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("sendRequest"))
         self.tableView.mj_header.beginRefreshing()
     }

@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import DGElasticPullToRefresh
 import SwiftyJSON
 import Kingfisher
 import MJRefresh
