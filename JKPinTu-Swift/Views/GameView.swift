@@ -83,17 +83,22 @@ class GameView: UIView {
     */
     func checkGameOver()->Bool{
         
-        var succ = true
-        for item in self.views{
-            
-            if(item.sort != item.location){
-                succ = false
-                break
-            }
-            
-            print("location: \(item.location)    sort: \(item.sort)" )
+        let unfinished = self.views.filter { (info) -> Bool in
+            return info.sort != info.location
         }
-        return succ
+        return unfinished.count == 0
+        
+//        var succ = true
+//        for item in self.views{
+//            
+//            if(item.sort != item.location){
+//                succ = false
+//                break
+//            }
+//            
+//            print("location: \(item.location)    sort: \(item.sort)" )
+//        }
+//        return succ
     }
     
     
@@ -140,6 +145,8 @@ class GameView: UIView {
         
         let randomIndex = arc4randomInRange(0, to: nearPositions.count)
         let randomPosition = nearPositions[randomIndex]
+        
+        
 
 //        为了防止随机出来的全部点都已经在记录数组中造成死循环，这里需要判断随机点数组与记录点数组交集
         
@@ -150,6 +157,7 @@ class GameView: UIView {
                 break
             }
         }
+        
         if nextGrid == nil{
             nextGrid = self.randomGridNearbyPlaceholder(placeholder)
         }
