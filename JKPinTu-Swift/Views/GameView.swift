@@ -64,7 +64,7 @@ class GameView: UIView {
     var image: UIImage? {
         didSet{
             //处理图片并显示
-            self.reloadData()
+            self.resetViews()
         }
     }
     
@@ -209,7 +209,7 @@ class GameView: UIView {
         
         let nextGrid = self.randomGridNearbyPlaceholder(placeholder)
         
-        self.moveGrid(from: nextGrid, to: placeholder, durationPerStep: 0.25, completion: { () -> Void in
+        self.moveGrid(from: nextGrid, to: placeholder, durationPerStep: 0.15, completion: { () -> Void in
             self.swapNum = self.swapNum - 1
             self.atomaticMove()
         })
@@ -265,29 +265,30 @@ class GameView: UIView {
             imageview.clipsToBounds = true
             imageview.tag = index
             
-            /// 常规模式用单击
-            imageview.userInteractionEnabled = true
-            let tapGesture = UITapGestureRecognizer.init(target: self, action: Selector("imageviewTapGestures:"))
-            tapGesture.numberOfTapsRequired = 1
-            imageview.addGestureRecognizer(tapGesture)
-            
-            /// 对换模式用轻扫手势
-            let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
-            leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.Left
-            imageview.addGestureRecognizer(leftSwipeGesture)
-            
-            let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
-            rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.Right
-            imageview.addGestureRecognizer(rightSwipeGesture)
-            
-            let upSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
-            upSwipeGesture.direction = UISwipeGestureRecognizerDirection.Up
-            imageview.addGestureRecognizer(upSwipeGesture)
-            
-            let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
-            downSwipeGesture.direction = UISwipeGestureRecognizerDirection.Down
-            imageview.addGestureRecognizer(downSwipeGesture)
-            
+            if self.gameMode == .normal {
+                /// 常规模式用单击
+                imageview.userInteractionEnabled = true
+                let tapGesture = UITapGestureRecognizer.init(target: self, action: Selector("imageviewTapGestures:"))
+                tapGesture.numberOfTapsRequired = 1
+                imageview.addGestureRecognizer(tapGesture)
+            }else{
+                /// 对换模式用轻扫手势
+                let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+                leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.Left
+                imageview.addGestureRecognizer(leftSwipeGesture)
+                
+                let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+                rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.Right
+                imageview.addGestureRecognizer(rightSwipeGesture)
+                
+                let upSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+                upSwipeGesture.direction = UISwipeGestureRecognizerDirection.Up
+                imageview.addGestureRecognizer(upSwipeGesture)
+                
+                let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+                downSwipeGesture.direction = UISwipeGestureRecognizerDirection.Down
+                imageview.addGestureRecognizer(downSwipeGesture)
+            }
             
             let info = JKGridInfo(location: index, imageView: imageview)
             self.views.append(info)
@@ -475,7 +476,7 @@ class GameView: UIView {
         
         let placeholder = self.placeholderGridInfo()
         let lastGridInfo = self.views[p2.position]
-        self.reverseMoveGrid(from: placeholder, to: lastGridInfo) { () -> Void in
+        self.reverseMoveGrid(from: placeholder, to: lastGridInfo ,durationPerStep:0.15) { () -> Void in
             self.positions.removeLast()
             self.completeAllGridByPositions()
         }

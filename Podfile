@@ -6,6 +6,8 @@ target 'JKPinTu-Swift' do
     pod 'SwiftyJSON', '~> 2.3.2'
     pod 'MJRefresh', '~> 3.0.7'
     
+    pod 'SVProgressHUD', '~> 2.0-beta'
+
     pod 'ReactiveCocoa', '~> 2.5'
     pod 'SnapKit', '~> 0.18.0'
     pod 'AsyncSwift', '~> 1.6.4'

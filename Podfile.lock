@@ -11,6 +11,7 @@ PODS:
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
   - SnapKit (0.18.0)
+  - SVProgressHUD (2.0-beta)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - MJRefresh (~> 3.0.7)
   - ReactiveCocoa (~> 2.5)
   - SnapKit (~> 0.18.0)
+  - SVProgressHUD (~> 2.0-beta)
   - SwiftyJSON (~> 2.3.2)
 
 SPEC CHECKSUMS:
@@ -29,6 +31,7 @@ SPEC CHECKSUMS:
   MJRefresh: f3e1228ec3d38c7ba5208d58032631a52f39f495
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SnapKit: e1f090a6d47b1dd4bd89b73f72b6746a7835ef3c
+  SVProgressHUD: c83337f10ed32d701c423d519059a249973c8662
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

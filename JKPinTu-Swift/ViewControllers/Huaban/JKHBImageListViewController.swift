@@ -66,17 +66,6 @@ class JKHBImageListViewController: UICollectionViewController {
             self.collectionView!.mj_footer.endRefreshing()
             
         }
-        
-//        Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/pins", parameters: ["limit": 21 , "tag":self.tagName! , "max": seq]).responseJSON { (respone) -> Void in
-//            
-//            let json = JSON(respone.result.value!)
-//            let pins = (json.object as! NSDictionary)["pins"]
-//            let tempTags = JKHBTagDetailInfo.parseDataFromHuaban(pins as! Array)
-//            self.tags.addObjectsFromArray(tempTags)
-//            self.collectionView?.reloadData()
-//            self.collectionView!.mj_header.endRefreshing()
-//            self.collectionView!.mj_footer.endRefreshing()
-//        }
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -110,6 +99,8 @@ class JKHBImageListViewController: UICollectionViewController {
         
         let tag = self.tags[indexPath.row] as! JKHBTagDetailInfo
         let url = NSURL(string: tag.originalImageURL)
+        
+        
         KingfisherManager().downloader.downloadImageWithURL(url!, progressBlock: { (receivedSize, totalSize) -> () in
 
             }) { (image, error, imageURL, originalData) -> () in
