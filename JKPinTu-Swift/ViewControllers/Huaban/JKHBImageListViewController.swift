@@ -14,7 +14,7 @@ import MJRefresh
 
 class JKHBImageListViewController: UICollectionViewController {
 
-    private var tags = NSMutableArray()
+    private var tags = [JKHBTagDetailInfo]()
     
     var tagName:String? = ""
     
@@ -46,8 +46,8 @@ class JKHBImageListViewController: UICollectionViewController {
     func footerRefresh(){
         var seq = 0
         if self.tags.count != 0{
-            let lastObjc = self.tags.lastObject as! JKHBTagDetailInfo
-            seq = lastObjc.seq == 0 ? 0 : lastObjc.seq
+            let lastObjc = self.tags.last
+            seq = lastObjc!.seq == 0 ? 0 : lastObjc!.seq
         }
         self.sendRequest(seq)
     }
@@ -60,7 +60,7 @@ class JKHBImageListViewController: UICollectionViewController {
             
             let pins = (JSON_obj.object as! NSDictionary)["pins"]
             let tempTags = JKHBTagDetailInfo.parseDataFromHuaban(pins as! Array)
-            self.tags.addObjectsFromArray(tempTags)
+            self.tags =  seq != 0 ? (self.tags + tempTags) : tempTags
             self.collectionView?.reloadData()
             self.collectionView!.mj_header.endRefreshing()
             self.collectionView!.mj_footer.endRefreshing()
@@ -88,7 +88,7 @@ class JKHBImageListViewController: UICollectionViewController {
             imageView?.contentMode = .ScaleAspectFill
             cell.contentView.addSubview(imageView!)
         }
-        let tag = self.tags[indexPath.row] as! JKHBTagDetailInfo
+        let tag = self.tags[indexPath.row]
         imageView!.kf_setImageWithURL(NSURL(string: tag.thumbnailImageURL)!)
         return cell
     }
@@ -97,9 +97,8 @@ class JKHBImageListViewController: UICollectionViewController {
         
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
         
-        let tag = self.tags[indexPath.row] as! JKHBTagDetailInfo
+        let tag = self.tags[indexPath.row]
         let url = NSURL(string: tag.originalImageURL)
-        
         
         KingfisherManager().downloader.downloadImageWithURL(url!, progressBlock: { (receivedSize, totalSize) -> () in
 

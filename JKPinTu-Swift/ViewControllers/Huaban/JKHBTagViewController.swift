@@ -15,7 +15,7 @@ class JKHBTagViewController: UITableViewController {
 
     private let cellIdentifier = "UITableViewCell"
     
-    private var tags = NSMutableArray()
+    private var tags = [JKHBTagInfo]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +24,7 @@ class JKHBTagViewController: UITableViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-
-         
+        
         self.tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("sendRequest"))
         self.tableView.mj_header.beginRefreshing()
     }
@@ -35,20 +34,11 @@ class JKHBTagViewController: UITableViewController {
         Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/tags").jk_responseSwiftyJSON { (request, response, JSON_obj, error) -> Void in
             
             let tempTags = JKHBTagInfo.parseDataFromHuaban(JSON_obj.object as! Array)
-            self.tags.addObjectsFromArray(tempTags)
+            self.tags = tempTags
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
             
         }
-        
-        
-//        Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/tags").responseJSON { (respone) -> Void in
-//            let json = JSON(respone.result.value!)
-//            let tempTags = JKHBTagInfo.parseDataFromHuaban(json.object as! Array)
-//            self.tags.addObjectsFromArray(tempTags)
-//            self.tableView.reloadData()
-//            self.tableView.mj_header.endRefreshing()
-//        }
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -70,7 +60,7 @@ class JKHBTagViewController: UITableViewController {
             cell?.detailTextLabel?.textColor = UIColor.grayColor()
         }
         
-        let tag = self.tags[indexPath.row] as! JKHBTagInfo
+        let tag = self.tags[indexPath.row]
         
         let tagName = tag.tag_name
         let pinCountString = " 共\(tag.pin_count)张"
@@ -84,7 +74,7 @@ class JKHBTagViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let tag = self.tags[indexPath.row] as! JKHBTagInfo
+        let tag = self.tags[indexPath.row]
         let vc = JKHBImageListViewController()
         vc.tagName = tag.tag_name
         self.navigationController?.pushViewController(vc, animated: true)
