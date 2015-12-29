@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import SwiftyBeaver
+
+let jk_log = SwiftyBeaver.self
 
 
 let SCREEN_BOUNDS = UIScreen.mainScreen().bounds

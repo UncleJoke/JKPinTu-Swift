@@ -32,6 +32,7 @@ let lastRandomSwapCount:Int = 2 //随机的时候需要记录最后移动位置�
 
 class GameView: UIView {
 
+// MARK: - property
     private var swapNum = randomSwapCount //随机移动次数
     
     /// 最后两次移动过的点
@@ -76,6 +77,7 @@ class GameView: UIView {
         }
     }
     
+// MARK: 
     /*!
     检测游戏是否结束：location 与 sort 能匹配上则游戏结束
     
@@ -161,10 +163,10 @@ class GameView: UIView {
         if nextGrid == nil{
             nextGrid = self.randomGridNearbyPlaceholder(placeholder)
         }
-        print("随机出来的点\(nextGrid?.location)  上次的点：\(self.lastPositions)")
+        jk_log.debug("随机出来的点\(nextGrid?.location)  上次的点：\(self.lastPositions)")
         
         if (self.lastPositions.contains((nextGrid?.location)!)) {
-            print("包含了前两次的点 重新再来")
+            jk_log.debug("包含了前两次的点 重新再来")
             nextGrid = self.randomGridNearbyPlaceholder(placeholder)
         }else{
             self.lastPositions.append((nextGrid?.location)!)
@@ -173,7 +175,7 @@ class GameView: UIView {
         if self.lastPositions.count > lastRandomSwapCount{
             self.lastPositions.removeFirst()
         }
-        print("随机结束，需要移动到这个点：\(nextGrid?.location)   记录：\(self.lastPositions)")
+        jk_log.debug("随机结束，需要移动到这个点：\(nextGrid?.location)   记录：\(self.lastPositions)")
         return nextGrid!
     }
     
@@ -346,7 +348,7 @@ class GameView: UIView {
             })
         }else{
             isMoving = false
-            print(clickInfo)
+            jk_log.error(clickInfo)
         }
     }
     
@@ -464,7 +466,7 @@ class GameView: UIView {
     
     func completeAllGridByPositions(){
         
-        print(self.positions)
+        jk_log.debug(self.positions)
         let count = self.positions.count
         
         if count < 2 {
@@ -549,7 +551,7 @@ class GameView: UIView {
     }
     
     func printList() {
-        print("------------------------")
+        jk_log.debug("------------------------")
         var text = ""
         for temp in self.views {
             text += "\t \(temp.sort) \t"
@@ -557,7 +559,7 @@ class GameView: UIView {
                 text += "\n"
             }
         }
-        print(text)
+        jk_log.debug("\n" + text)
     }
 }
 

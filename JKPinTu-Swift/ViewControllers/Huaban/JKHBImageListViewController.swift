@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 import MJRefresh
+import MBProgressHUD
 
 class JKHBImageListViewController: UICollectionViewController {
 
@@ -101,10 +102,12 @@ class JKHBImageListViewController: UICollectionViewController {
         let url = NSURL(string: tag.originalImageURL)
         
         KingfisherManager().downloader.downloadImageWithURL(url!, progressBlock: { (receivedSize, totalSize) -> () in
+            
+//            let progress = Float(receivedSize)/Float(totalSize)
 
-            }) { (image, error, imageURL, originalData) -> () in
-
-                (self.navigationController as! JKHBNavigationController).dismissClick({ () -> Void in
+            }) { [unowned self] (image, error, imageURL, originalData) -> () in
+                
+                (self.navigationController as! JKHBNavigationController).dismissClick({ [unowned self] () -> Void in
                     if((self.navigationController as! JKHBNavigationController).imageBlock != nil){
                         (self.navigationController as! JKHBNavigationController).imageBlock!(image!)
                     }

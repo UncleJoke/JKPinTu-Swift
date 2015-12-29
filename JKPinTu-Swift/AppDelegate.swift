@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import SAHistoryNavigationViewController
+import SwiftyBeaver
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,14 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-//        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        self.window?.backgroundColor=UIColor.whiteColor()
-//        self.window!.makeKeyAndVisible()
-////        let vc = UIViewController(nibName: "HomeViewController", bundle: nil)
-//        let nav:BaseNavigationController = BaseNavigationController(rootViewController:HomeViewController())
-//        self.window?.rootViewController = nav
+
+        SwiftyBeaverConfig()
+//        jk_log.debug(self)
+//        jk_log.error(self)
+//        jk_log.info(self)
+//        jk_log.warning(self)
+        
+        (window?.rootViewController as? UINavigationController)?.historyDelegate = self
+        
         return true
     }
+    
+    private func SwiftyBeaverConfig(){
+        let console = ConsoleDestination()  // log to Xcode Console
+        let file = FileDestination()  // log to default swiftybeaver.log file
+        jk_log.addDestination(console)
+        jk_log.addDestination(file)
+    }
+
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -49,3 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: SAHistoryNavigationViewControllerDelegate {
+    func historyControllerDidShowHistory(controller: SAHistoryNavigationViewController, viewController: UIViewController) {
+        print("did show history")
+    }
+}
