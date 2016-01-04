@@ -101,7 +101,7 @@ class JKHBImageListViewController: UICollectionViewController {
         let tag = self.tags[indexPath.row]
         let url = NSURL(string: tag.originalImageURL)
         
-        KingfisherManager().downloader.downloadImageWithURL(url!, progressBlock: { (receivedSize, totalSize) -> () in
+        KingfisherManager.sharedManager.downloader.downloadImageWithURL(url!, progressBlock: { (receivedSize, totalSize) -> () in
             
 //            let progress = Float(receivedSize)/Float(totalSize)
 

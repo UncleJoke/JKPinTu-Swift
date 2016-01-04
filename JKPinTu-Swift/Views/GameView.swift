@@ -266,10 +266,10 @@ class GameView: UIView {
             imageview.layer.cornerRadius = (index == (self.numberOfGrids-1) && self.gameMode == .normal) ? 6 : 3
             imageview.clipsToBounds = true
             imageview.tag = index
-            
+            imageview.userInteractionEnabled = true
+
             if self.gameMode == .normal {
                 /// 常规模式用单击
-                imageview.userInteractionEnabled = true
                 let tapGesture = UITapGestureRecognizer.init(target: self, action: Selector("imageviewTapGestures:"))
                 tapGesture.numberOfTapsRequired = 1
                 imageview.addGestureRecognizer(tapGesture)
