@@ -136,9 +136,9 @@ class GameViewController: BaseViewController {
     
     func completeButton(){
         
-        if self.gameView.gameMode == .swapping{
-            return
-        }
+//        if self.gameView.gameMode == .swapping{
+//            return
+//        }
         self.gameView.completeAllGridByPositions()
     }
     

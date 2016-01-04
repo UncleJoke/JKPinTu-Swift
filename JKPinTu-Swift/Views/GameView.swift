@@ -186,14 +186,19 @@ class GameView: UIView {
     */
     func placeholderGridInfo() -> JKGridInfo{
         
-        var p:JKGridInfo?
-        for item in self.views {
-            if item.sort == self.numberOfGrids - 1 {
-                p = item
-                break
-            }
+        let filterViews = self.views.filter { (info) -> Bool in
+            return info.sort == self.numberOfGrids - 1
         }
-        return p!
+        return filterViews.first!
+        
+//        var p:JKGridInfo?
+//        for item in self.views {
+//            if item.sort == self.numberOfGrids - 1 {
+//                p = item
+//                break
+//            }
+//        }
+//        return p!
     }
     
     
@@ -473,14 +478,24 @@ class GameView: UIView {
             return
         }
         
-//        let p1 = self.positions.last///最后一个是自己的当前位置
-        let p2 = self.positions[count - 2] ///倒数第2个
-        
-        let placeholder = self.placeholderGridInfo()
-        let lastGridInfo = self.views[p2.position]
-        self.reverseMoveGrid(from: placeholder, to: lastGridInfo ,durationPerStep:0.15) { () -> Void in
-            self.positions.removeLast()
-            self.completeAllGridByPositions()
+        if self.gameMode == .swapping {
+            let p1 = self.positions.last
+            let p2 = self.positions[count - 2] ///倒数第2个
+            let placeholder = self.views[p1!.position]
+            let lastGridInfo = self.views[p2.position]
+            self.reverseMoveGrid(from: placeholder, to: lastGridInfo ,durationPerStep:0.15) { () -> Void in
+                self.positions.removeLast()
+                self.positions.removeLast()
+                self.completeAllGridByPositions()
+            }
+        }else {
+            let p2 = self.positions[count - 2] ///倒数第2个
+            let placeholder = self.placeholderGridInfo()
+            let lastGridInfo = self.views[p2.position]
+            self.reverseMoveGrid(from: placeholder, to: lastGridInfo ,durationPerStep:0.15) { () -> Void in
+                self.positions.removeLast()
+                self.completeAllGridByPositions()
+            }
         }
     }
     
@@ -551,15 +566,20 @@ class GameView: UIView {
     }
     
     func printList() {
-        jk_log.debug("------------------------")
-        var text = ""
-        for temp in self.views {
-            text += "\t \(temp.sort) \t"
-            if (temp.location + 1) % self.numberOfRows == 0 {
-                text += "\n"
-            }
+//        var text = ""
+//        for temp in self.views {
+//            text += "\t \(temp.sort) \t"
+//            if (temp.location + 1) % self.numberOfRows == 0 {
+//                text += "\n"
+//            }
+//        }
+//        jk_log.debug("\n" + text)
+        
+        let debugs = self.views.reduce("\n") { (t, temp2) -> String in
+            let string = "  \t \(temp2.sort) \t \( (temp2.location + 1) % self.numberOfRows == 0 ? "\n" : "" ) "
+            return t + string
         }
-        jk_log.debug("\n" + text)
+        jk_log.debug(debugs)
     }
 }
 
