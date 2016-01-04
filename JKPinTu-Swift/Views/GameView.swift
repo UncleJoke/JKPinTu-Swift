@@ -29,7 +29,6 @@ struct Position {
 let randomSwapCount:Int = 25 /// 随机移动次数
 let lastRandomSwapCount:Int = 2 //随机的时候需要记录最后移动位置的个数，防止随机移动的时候一直在某几个位置之前变动，默认记录最后2个位置
 
-
 class GameView: UIView {
 
 // MARK: - property
@@ -61,7 +60,7 @@ class GameView: UIView {
         }
     }
     
-    
+    /// 传入图片自动切割
     var image: UIImage? {
         didSet{
             //处理图片并显示
@@ -89,20 +88,7 @@ class GameView: UIView {
             return info.sort != info.location
         }
         return unfinished.count == 0
-        
-//        var succ = true
-//        for item in self.views{
-//            
-//            if(item.sort != item.location){
-//                succ = false
-//                break
-//            }
-//            
-//            print("location: \(item.location)    sort: \(item.sort)" )
-//        }
-//        return succ
     }
-    
     
     func reloadData(){
         
@@ -148,8 +134,6 @@ class GameView: UIView {
         let randomIndex = arc4randomInRange(0, to: nearPositions.count)
         let randomPosition = nearPositions[randomIndex]
         
-        
-
 //        为了防止随机出来的全部点都已经在记录数组中造成死循环，这里需要判断随机点数组与记录点数组交集
         
         var nextGrid:JKGridInfo?
@@ -190,17 +174,7 @@ class GameView: UIView {
             return info.sort == self.numberOfGrids - 1
         }
         return filterViews.first!
-        
-//        var p:JKGridInfo?
-//        for item in self.views {
-//            if item.sort == self.numberOfGrids - 1 {
-//                p = item
-//                break
-//            }
-//        }
-//        return p!
     }
-    
     
     /*!
     自动随机移动格子
@@ -230,7 +204,6 @@ class GameView: UIView {
         self.atomaticMove()
     }
     
-    
     func resetViews(){
         
         self.lastPositions.removeAll()
@@ -253,7 +226,6 @@ class GameView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     private func setupSubviews(){
         
@@ -303,7 +275,6 @@ class GameView: UIView {
         }
         self.sendSubviewToBack((self.views.last?.imageView)!)
     }
-    
     
     
     func handleSwipeFrom(recognizer:UISwipeGestureRecognizer) {
@@ -384,14 +355,10 @@ class GameView: UIView {
     
     private func clickedGrid(view:UIView) -> JKGridInfo{
         
-        var clickInfo:JKGridInfo?
-        for item in self.views {
-            if((item.imageView?.isEqual(view)) == true){
-                clickInfo = item
-                break;
-            }
+        let filterViews = self.views.filter { (info) -> Bool in
+            return info.imageView.isEqual(view)
         }
-        return clickInfo!
+        return filterViews.first!
     }
     
     /*!
@@ -471,10 +438,8 @@ class GameView: UIView {
     
     func completeAllGridByPositions(){
         
-        jk_log.debug(self.positions)
         let count = self.positions.count
-        
-        if count < 2 {
+        if self.positions.count < 2 {
             return
         }
         
@@ -565,15 +530,9 @@ class GameView: UIView {
         return types
     }
     
+    
+// MARK: log
     func printList() {
-//        var text = ""
-//        for temp in self.views {
-//            text += "\t \(temp.sort) \t"
-//            if (temp.location + 1) % self.numberOfRows == 0 {
-//                text += "\n"
-//            }
-//        }
-//        jk_log.debug("\n" + text)
         
         let debugs = self.views.reduce("\n") { (t, temp2) -> String in
             let string = "  \t \(temp2.sort) \t \( (temp2.location + 1) % self.numberOfRows == 0 ? "\n" : "" ) "
