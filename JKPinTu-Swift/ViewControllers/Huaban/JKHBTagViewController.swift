@@ -32,7 +32,9 @@ class JKHBTagViewController: UITableViewController {
     func sendRequest(){
         
         Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/tags").jk_responseSwiftyJSON { (request, response, JSON_obj, error) -> Void in
-            
+            if JSON_obj == JSON.null {
+                return
+            }
             let tempTags = JKHBTagInfo.parseDataFromHuaban(JSON_obj.object as! Array)
             self.tags = tempTags
             self.tableView.reloadData()

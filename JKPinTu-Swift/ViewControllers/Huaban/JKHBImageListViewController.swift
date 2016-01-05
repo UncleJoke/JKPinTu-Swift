@@ -58,7 +58,9 @@ class JKHBImageListViewController: UICollectionViewController {
         let max = seq == 0 ? "" : "\(seq)"
 
         Alamofire.request(.GET, "http://api.huaban.com/fm/wallpaper/pins", parameters: ["limit": 21 , "tag":self.tagName! , "max": max]).jk_responseSwiftyJSON { (request, response, JSON_obj, error) -> Void in
-            
+            if JSON_obj == JSON.null {
+                return
+            }
             let pins = (JSON_obj.object as! NSDictionary)["pins"]
             let tempTags = JKHBTagDetailInfo.parseDataFromHuaban(pins as! Array)
             self.tags =  seq != 0 ? (self.tags + tempTags) : tempTags
