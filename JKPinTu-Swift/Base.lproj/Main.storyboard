@@ -45,7 +45,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="uht-H7-77p"/>
                                 </constraints>
-                                <state key="normal" title="开始游戏"/>
+                                <state key="normal" title="开始拼图"/>
                                 <connections>
                                     <action selector="startButtonClick:" destination="xcd-8q-Kch" eventType="touchUpInside" id="tlz-0o-tAa"/>
                                 </connections>

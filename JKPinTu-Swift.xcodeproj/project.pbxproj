@@ -35,6 +35,7 @@
 		B673D4D01C1BBABA004E5D35 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4C31C1BBABA004E5D35 /* GameView.swift */; };
 		B673D4D21C1BBB84004E5D35 /* JKGridInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673D4D11C1BBB84004E5D35 /* JKGridInfo.swift */; };
 		B6AF59C51C204D440076B3ED /* JKArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AF59C41C204D440076B3ED /* JKArrayExtension.swift */; };
+		B6C00CEC1C3CD6F30093454B /* Game2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C00CEB1C3CD6F30093454B /* Game2ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		B673D4D11C1BBB84004E5D35 /* JKGridInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKGridInfo.swift; sourceTree = "<group>"; };
 		B680473E1C27FEDF0052DF42 /* JKPinTu-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKPinTu-Swift-Bridging-Header.h"; sourceTree = "<group>"; tabWidth = 3; };
 		B6AF59C41C204D440076B3ED /* JKArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKArrayExtension.swift; sourceTree = "<group>"; };
+		B6C00CEB1C3CD6F30093454B /* Game2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game2ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			children = (
 				B673D4B71C1BBABA004E5D35 /* Huaban */,
 				B673D4B41C1BBABA004E5D35 /* GameViewController.swift */,
+				B6C00CEB1C3CD6F30093454B /* Game2ViewController.swift */,
 				B673D4B51C1BBABA004E5D35 /* HomeViewController.swift */,
 				B673D4C01C1BBABA004E5D35 /* OtherViewController.swift */,
 				B673D4C11C1BBABA004E5D35 /* OtherViewController.xib */,
@@ -369,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B673D4CB1C1BBABA004E5D35 /* JKHBTagViewController.swift in Sources */,
+				B6C00CEC1C3CD6F30093454B /* Game2ViewController.swift in Sources */,
 				B673D4CE1C1BBABA004E5D35 /* OtherViewController.swift in Sources */,
 				B659D7471C1FB6690025B527 /* JKUIViewExtension.swift in Sources */,
 				B641F9ED1C1AE249000D8068 /* BaseViewController.swift in Sources */,
