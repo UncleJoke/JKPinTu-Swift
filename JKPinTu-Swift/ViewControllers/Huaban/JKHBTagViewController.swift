@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import MJRefresh
 
-class JKHBTagViewController: UITableViewController {
+final class JKHBTagViewController: UITableViewController {
 
     private let cellIdentifier = "UITableViewCell"
     

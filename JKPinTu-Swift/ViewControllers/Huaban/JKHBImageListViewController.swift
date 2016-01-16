@@ -13,7 +13,7 @@ import Kingfisher
 import MJRefresh
 import MBProgressHUD
 
-class JKHBImageListViewController: UICollectionViewController {
+final class JKHBImageListViewController: UICollectionViewController {
 
     private var tags = [JKHBTagDetailInfo]()
     
