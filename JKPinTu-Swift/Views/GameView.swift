@@ -247,24 +247,24 @@ class GameView: UIView {
 
             if self.gameMode == .normal {
                 /// 常规模式用单击
-                let tapGesture = UITapGestureRecognizer.init(target: self, action: Selector("imageviewTapGestures:"))
+                let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(GameView.imageviewTapGestures(_:)))
                 tapGesture.numberOfTapsRequired = 1
                 imageview.addGestureRecognizer(tapGesture)
             }else{
                 /// 对换模式用轻扫手势
-                let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+                let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameView.handleSwipeFrom(_:)))
                 leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.Left
                 imageview.addGestureRecognizer(leftSwipeGesture)
                 
-                let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+                let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameView.handleSwipeFrom(_:)))
                 rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.Right
                 imageview.addGestureRecognizer(rightSwipeGesture)
                 
-                let upSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+                let upSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameView.handleSwipeFrom(_:)))
                 upSwipeGesture.direction = UISwipeGestureRecognizerDirection.Up
                 imageview.addGestureRecognizer(upSwipeGesture)
                 
-                let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipeFrom:"))
+                let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameView.handleSwipeFrom(_:)))
                 downSwipeGesture.direction = UISwipeGestureRecognizerDirection.Down
                 imageview.addGestureRecognizer(downSwipeGesture)
             }

@@ -24,9 +24,9 @@ class GameViewController: BaseViewController {
         self.view.backgroundColor = UIColor.whiteColor()
         self.title = "拼图"
         
-        let settingButton = UIBarButtonItem(title: "设置", style: .Plain, target: self, action: Selector("settingButtonClick"))
-        let refreshButton = UIBarButtonItem(title: "换图", style: .Plain, target: self, action: Selector("changePhotoClick"))
-        let huabanButton = UIBarButtonItem(title: "花瓣", style: .Plain, target: self, action: Selector("huabanClick"))
+        let settingButton = UIBarButtonItem(title: "设置", style: .Plain, target: self, action: #selector(GameViewController.settingButtonClick))
+        let refreshButton = UIBarButtonItem(title: "换图", style: .Plain, target: self, action: #selector(GameViewController.changePhotoClick))
+        let huabanButton = UIBarButtonItem(title: "花瓣", style: .Plain, target: self, action: #selector(GameViewController.huabanClick))
         self.navigationItem.rightBarButtonItems = [huabanButton,refreshButton,settingButton]
         
         // Do any additional setup after loading the view.
@@ -38,7 +38,7 @@ class GameViewController: BaseViewController {
         let chechButton = UIButton(type: .Custom)
         chechButton.setTitle("check", forState: .Normal)
         chechButton.setTitleColor(UIColor.randomColor(), forState: .Normal)
-        chechButton.addTarget(self, action: Selector("checkGameOver:"), forControlEvents: .TouchUpInside)
+        chechButton.addTarget(self, action: #selector(GameViewController.checkGameOver(_:)), forControlEvents: .TouchUpInside)
         chechButton.frame = CGRectMake(0, self.gameView.bottom() + 10, SCREEN_WIDTH/3, 20)
         self.view.addSubview(chechButton)
         

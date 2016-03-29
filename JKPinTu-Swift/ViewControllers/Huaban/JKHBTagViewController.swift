@@ -25,7 +25,7 @@ final class JKHBTagViewController: UITableViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("sendRequest"))
+        self.tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(JKHBTagViewController.sendRequest))
         self.tableView.mj_header.beginRefreshing()
     }
     
@@ -91,7 +91,7 @@ class JKHBNavigationController:BaseNavigationController {
     class func initJKHBNavigationController()->JKHBNavigationController{
         let vc = JKHBTagViewController()
         let nav:JKHBNavigationController = JKHBNavigationController(rootViewController:vc)
-        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "取消", style: .Plain, target: nav, action: Selector("dismiss"))
+        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "取消", style: .Plain, target: nav, action: #selector(JKHBNavigationController.dismiss))
         return nav
     }
     

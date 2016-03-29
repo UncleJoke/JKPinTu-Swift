@@ -35,8 +35,8 @@ final class JKHBImageListViewController: UICollectionViewController {
         self.collectionView?.backgroundColor = UIColor.whiteColor()
         self.collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "UICollectionViewCell")
         
-        self.collectionView!.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefresh"))
-        self.collectionView!.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefresh"))
+        self.collectionView!.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(JKHBImageListViewController.headerRefresh))
+        self.collectionView!.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: #selector(JKHBImageListViewController.footerRefresh))
         self.collectionView!.mj_header.beginRefreshing()
     }
     
