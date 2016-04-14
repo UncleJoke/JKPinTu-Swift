@@ -20,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         SwiftyBeaverConfig()
-//        jk_log.debug(self)
-//        jk_log.error(self)
-//        jk_log.info(self)
-//        jk_log.warning(self)
+        jk_log.debug(self)
+        jk_log.error(self)
+        jk_log.info(self)
+        jk_log.warning(self)
         
         (window?.rootViewController as? UINavigationController)?.historyDelegate = self
         
